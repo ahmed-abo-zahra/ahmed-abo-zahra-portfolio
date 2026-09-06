@@ -15,9 +15,9 @@ export default function Home() {
       <a className="skip-link" href="#work">Skip to work</a>
       <div className="hero-journey" id="top">
       <section className="hero" aria-label="Introduction">
-        <div className="architecture" aria-hidden="true"><Image src="/images/hero/architecture-v2.jpg" alt="" fill priority sizes="100vw" quality={85} /></div>
+        <div className="architecture" aria-hidden="true"><Image src="/images/hero/architecture-v2.jpg" alt="" fill loading="eager" fetchPriority="high" sizes="100vw" /></div>
         <nav className="nav" aria-label="Primary navigation">
-          <a className="monogram" href="#top" aria-label="Ahmed Abo Zahra, home">AZ</a>
+          <a className="monogram" href="#top" aria-label="AZ — Ahmed Abo Zahra, home">AZ</a>
           <div className="nav-rule" aria-hidden="true" />
           <div className="nav-links">
             <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>

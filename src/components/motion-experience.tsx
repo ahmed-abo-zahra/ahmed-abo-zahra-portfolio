@@ -33,7 +33,7 @@ export default function MotionExperience() {
           trigger: journey, start: "top top", end: "bottom bottom", scrub: 0.65,
           invalidateOnRefresh: true,
         }});
-        timeline.to(".hero-copy, .hero .nav, .scroll-cue", { opacity: 0, y: -35, duration: 0.25 }, 0)
+        timeline.to(".hero-copy, .hero .nav, .scroll-cue", { autoAlpha: 0, y: -35, duration: 0.25 }, 0)
           .to(".architecture", { scale: 2.7, transformOrigin: "72% 47%", duration: 1, ease: "power1.inOut" }, 0)
           .fromTo(".portal-reveal", { clipPath: "circle(0% at 72% 47%)" }, { clipPath: "circle(110% at 72% 47%)", duration: 0.65, ease: "power2.inOut" }, 0.28)
           .fromTo(".reveal-surface", { scale: 1.16 }, { scale: 1, duration: 0.65, ease: "power1.out" }, 0.3)

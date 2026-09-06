@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ahmed Abo Zahra Portfolio
 
-## Getting Started
+English portfolio at **https://ahmedabozahra.me**. Next.js App Router, TypeScript, GSAP and Lenis. Pages and project content are server-rendered; motion enhances the content and respects reduced-motion preferences.
 
-First, run the development server:
+## Local development
 
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production checks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run lint
+npm run build
+npm run start
+# In another terminal:
+npx playwright install chromium webkit
+QA_URL=http://localhost:3000 npm run test:e2e
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tests cover images, project routes, responsive layouts, the cinematic hero, reduced motion, clipboard feedback, metadata, structured data, screenshot dialogs and keyboard focus. WebKit coverage is engine-level testing, not a claim of testing on a physical iPhone.
 
-## Learn More
+## Content and assets
 
-To learn more about Next.js, take a look at the following resources:
+- `src/content/projects.ts`: project entries, order, case studies and screenshot references. Adding an entry generates its route, sitemap URL and next-project navigation. See `docs/adding-projects.md`.
+- `src/content/profile.ts`: current public contact links and identity.
+- `public/images/projects`: real project screenshots. Optimized previews load first; the full-resolution original loads when its viewer is opened.
+- `public/Ahmed_Abo_Zahra_CV.pdf`: published CV. Editable source is in the parent workspace under `output/cv`.
+- `src/app/icon.svg`: AZ mark. Run `node scripts/generate-icons.mjs` after changing it to regenerate browser and Apple icons.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment and indexing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+GitHub `ahmed-abo-zahra/ahmed-abo-zahra-portfolio`, branch `main`, is connected to Vercel project `ahmed-abo-zahra-portfolio` in `shadow2228m-7827s-projects`. A push to main triggers production deployment.
 
-## Deploy on Vercel
+`SITE_INDEXABLE=true` is required for the production build. Noncanonical hosts also receive an `X-Robots-Tag: noindex, nofollow` header. `www` redirects to the canonical domain. No credentials belong in this repository.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Search Console ownership and sitemap submission require the owner's Google session. See `docs/search-console.md`. Lighthouse SEO checks do not guarantee indexing or ranking.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Release findings and evidence: `docs/release-review.md`.

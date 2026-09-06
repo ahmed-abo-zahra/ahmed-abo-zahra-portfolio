@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Ahmed Abo Zahra | Full-Stack Web Developer",
   description: "Explore Ahmed Abo Zahra's web development work, from responsive interfaces and motion to full-stack functionality.",
   metadataBase: new URL("https://ahmedabozahra.me"),
+  authors: [{ name: profile.name, url: profile.website }],
+  twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
   openGraph: {
     title: "Ahmed Abo Zahra | Full-Stack Web Developer",
@@ -26,10 +28,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${profile.website}/#person`,
     name: "Ahmed Abo Zahra",
     url: "https://ahmedabozahra.me",
     jobTitle: "Full-Stack Web Developer",
     email: "mailto:ahmedabozahra68@gmail.com",
+    image: `${profile.website}/images/portrait/ahmed-abo-zahra.jpg`,
     sameAs: [profile.github, profile.linkedin],
   };
 

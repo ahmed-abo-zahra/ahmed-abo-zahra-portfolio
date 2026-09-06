@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/content/projects";
 import ContactIcon from "@/components/contact-icon";
 import { profile } from "@/content/profile";
+import ProjectImage from "@/components/project-image";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.name} | Ahmed Abo Zahra`,
     description: project.summary,
+    twitter: { card: "summary_large_image", title: `${project.name} | Ahmed Abo Zahra`, description: project.summary, images: [project.image] },
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
       title: `${project.name} | Ahmed Abo Zahra`,
@@ -36,15 +37,27 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject(slug);
   if (!project) notFound();
   const nextProject = projects.length > 1 ? projects[(projects.findIndex(item => item.slug === slug) + 1) % projects.length] : undefined;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: profile.website },
+        { "@type": "ListItem", position: 2, name: project.name, item: `${profile.website}/work/${project.slug}` },
+      ] },
+      { "@type": "CreativeWork", name: project.name, description: project.summary, url: `${profile.website}/work/${project.slug}`, image: `${profile.website}${project.image}`, creator: { "@id": `${profile.website}/#person` } },
+    ],
+  };
 
   return (
     <main className="case-study">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+      <a className="skip-link" href="#project-overview">Skip to project</a>
       <nav className="case-nav" aria-label="Case study navigation">
-        <Link className="monogram" href="/" aria-label="Ahmed Abo Zahra, home">AZ</Link>
+        <Link className="monogram" href="/" aria-label="AZ — Ahmed Abo Zahra, home">AZ</Link>
         <Link href="/#work">← All work</Link>
       </nav>
 
-      <header className="case-hero">
+      <header className="case-hero" id="project-overview" tabIndex={-1}>
         <div>
           <p className="eyebrow">Selected work / {project.number}</p>
           <h1>{project.name}</h1>
@@ -54,7 +67,7 @@ export default async function ProjectPage({ params }: Props) {
       </header>
 
       <section className="case-cover">
-        <Image src={project.image} alt={project.imageAlt} fill priority sizes="100vw" />
+        <ProjectImage src={project.image} alt={project.imageAlt} eager sizes="100vw" />
       </section>
 
       <section className="case-facts" aria-label="Project overview">
@@ -64,8 +77,8 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       <section className="case-gallery" aria-label={`${project.name} desktop and mobile views`}>
-        <div className="desktop-shot"><Image src={project.image} alt={`${project.name} desktop view`} fill sizes="(max-width: 900px) 100vw, 67vw" /></div>
-        <div className="mobile-shot"><Image src={project.mobileImage} alt={`${project.name} mobile view`} fill sizes="(max-width: 900px) 70vw, 22vw" /></div>
+        <div className="desktop-shot"><ProjectImage src={project.image} alt={`${project.name} desktop view`} sizes="(max-width: 900px) 100vw, 67vw" /></div>
+        <div className="mobile-shot"><ProjectImage src={project.mobileImage} alt={`${project.name} mobile view`} sizes="(max-width: 900px) 70vw, 22vw" /></div>
       </section>
 
       <section className="case-footer">
