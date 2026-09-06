@@ -20,6 +20,11 @@ export default function MotionExperience() {
       };
       frame = requestAnimationFrame(update);
       lenis.on("scroll", ScrollTrigger.update);
+      const onVisibility = () => {
+        cancelAnimationFrame(frame);
+        if (!document.hidden) frame = requestAnimationFrame(update);
+      };
+      document.addEventListener("visibilitychange", onVisibility);
 
       if (desktop && document.querySelector(".portal-reveal")) {
         const journey = document.querySelector<HTMLElement>(".hero-journey")!;
@@ -45,9 +50,19 @@ export default function MotionExperience() {
           scrollTrigger: { trigger: card, start: "top 82%", once: true },
         });
       });
+      if (desktop) {
+        const stack = gsap.timeline({ scrollTrigger: { trigger: ".craft-chapters", start: "top 65%", end: "bottom 80%", scrub: 0.7 } });
+        stack.to(".plane-interface", { y: -170, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
+          .to(".plane-logic", { y: 90, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
+          .to(".plane-data", { y: 290, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
+          .to(".craft-orbit", { scale: 1.1, duration: 1 }, 0);
+      }
+      gsap.from(".process-track span", { scaleX: 0, ease: "none", scrollTrigger: { trigger: ".process-section", start: "top 70%", end: "bottom 75%", scrub: true } });
+      gsap.from(".process-steps li", { y: 24, stagger: 0.12, duration: 0.65, scrollTrigger: { trigger: ".process-steps", start: "top 88%", once: true } });
       return () => {
         cancelAnimationFrame(frame);
         lenis.destroy();
+        document.removeEventListener("visibilitychange", onVisibility);
         document.querySelector(".hero-journey")?.classList.remove("is-cinematic");
       };
     });

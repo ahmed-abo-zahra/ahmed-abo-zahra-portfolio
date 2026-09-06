@@ -1,11 +1,11 @@
 import Image from "next/image";
 import MotionExperience from "@/components/motion-experience";
 import ContactIcon from "@/components/contact-icon";
+import Capabilities from "@/components/capabilities";
+import Process from "@/components/process";
+import CopyEmail from "@/components/copy-email";
+import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
-
-const skills = [
-  "React", "Next.js", "TypeScript", "PostgreSQL", "UI/UX", "Responsive web", "RTL", "Motion",
-];
 
 export default function Home() {
   const featured = projects[0];
@@ -57,22 +57,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="capabilities" aria-labelledby="capabilities-title">
-        <div className="capability-copy"><p className="eyebrow">Under the surface</p><h2 id="capabilities-title">Good experiences go deeper.</h2><p>Visual decisions, robust interfaces, and the logic that connects them all belong in the same product.</p></div>
-        <div className="capability-diagram"><div className="diagram-line" aria-hidden="true" /><div className="diagram-node node-interface">Interface</div><div className="diagram-node node-logic">Application logic</div><div className="diagram-node node-data">Data</div><div className="skill-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
-      </section>
+      <Capabilities />
+      <Process />
 
       <section className="about" id="about" aria-labelledby="about-title">
         <div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div>
-        <div><p className="eyebrow">A little about me</p><h2 id="about-title">Building with care, from Giza to the web.</h2><p>I&apos;m Ahmed, a Computer Science &amp; Engineering student at New Mansoura University and a freelance full-stack developer. I care about making a website feel considered before someone reads a line of code—and work just as hard on what happens after the click.</p><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a freelance full-stack developer and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design and the development.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="contact-orb" aria-hidden="true" />
         <p className="eyebrow">Have something in mind?</p><h2 id="contact-title">Let&apos;s build something worth showing.</h2><p>For freelance projects, collaborations, and full-time opportunities.</p>
+        <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <CopyEmail />
         <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <ContactIcon name="email" /></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <ContactIcon name="whatsapp" /></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <ContactIcon name="linkedin" /></a></div>
       </section>
-      <footer><span>© {new Date().getFullYear()} Ahmed Abo Zahra</span><a href="https://github.com/ahmed-abo-zahra" target="_blank" rel="noreferrer"><ContactIcon name="github" /> GitHub</a><a href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer"><ContactIcon name="linkedin" /> LinkedIn</a></footer>
+      <footer><span>© {new Date().getFullYear()} {profile.name}</span><a href={profile.github} target="_blank" rel="noreferrer"><ContactIcon name="github" /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><ContactIcon name="linkedin" /> LinkedIn</a></footer>
     </main>
   );
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
+import "./experience.css";
+import { profile } from "@/content/profile";
 
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
 const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], display: "swap" });
@@ -28,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     url: "https://ahmedabozahra.me",
     jobTitle: "Full-Stack Web Developer",
     email: "mailto:ahmedabozahra68@gmail.com",
-    sameAs: ["https://github.com/ahmedfrhat", "https://www.linkedin.com/in/ahmed-abo-zahra/"],
+    sameAs: [profile.github, profile.linkedin],
   };
 
   return <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></body></html>;
