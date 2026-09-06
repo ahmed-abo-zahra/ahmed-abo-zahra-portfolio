@@ -33,6 +33,8 @@ Confirmed findings: missing explicit high fetch priority for the LCP image; AZ l
 
 ## External dependency
 
+The isolated production follow-up measured performance 83, LCP 2.9 s, TBT 30 ms and CLS 0.017, with substantial network latency. Accessibility/best-practices/SEO remained 100. Rather than selecting the earlier higher score, the mobile animation path was split: native Web Animations/IntersectionObserver retain the reveal and parallax behavior; GSAP/Lenis are fetched only for desktop with motion enabled. The full visual/function suite was rerun. A separate regression script checks actual fetched script content and breakpoint cleanup.
+
 Production follow-up found conflicting inherited `index` metadata on unknown routes alongside Next.js's automatic `noindex`. Indexing now defaults to disabled in the layout, and only known pages opt in through `SITE_INDEXABLE=true`. Regression coverage checks both unknown project and unknown top-level URLs, plus indexability of valid production pages.
 
 Search Console needs the owner's Google login. Its ownership verification and sitemap submission remain pending. See `search-console.md`.

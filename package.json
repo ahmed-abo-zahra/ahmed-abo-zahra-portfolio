@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:e2e": "node scripts/verify-hero.mjs && node scripts/verify-experience.mjs && node scripts/verify-portfolio.mjs && node scripts/verify-release.mjs"
+    "test:e2e": "node scripts/verify-hero.mjs && node scripts/verify-experience.mjs && node scripts/verify-portfolio.mjs && node scripts/verify-release.mjs && node scripts/verify-motion-loading.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
