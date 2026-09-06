@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import MotionExperience from "@/components/motion-experience";
 import ContactIcon from "@/components/contact-icon";
 import Capabilities from "@/components/capabilities";
@@ -6,6 +7,10 @@ import Process from "@/components/process";
 import CopyEmail from "@/components/copy-email";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
+
+export const metadata: Metadata = {
+  robots: process.env.SITE_INDEXABLE === "true" ? { index: true, follow: true } : { index: false, follow: false },
+};
 
 export default function Home() {
   const featured = projects[0];

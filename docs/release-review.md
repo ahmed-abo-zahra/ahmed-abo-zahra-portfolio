@@ -33,4 +33,6 @@ Confirmed findings: missing explicit high fetch priority for the LCP image; AZ l
 
 ## External dependency
 
+Production follow-up found conflicting inherited `index` metadata on unknown routes alongside Next.js's automatic `noindex`. Indexing now defaults to disabled in the layout, and only known pages opt in through `SITE_INDEXABLE=true`. Regression coverage checks both unknown project and unknown top-level URLs, plus indexability of valid production pages.
+
 Search Console needs the owner's Google login. Its ownership verification and sitemap submission remain pending. See `search-console.md`.

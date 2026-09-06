@@ -21,7 +21,8 @@ export const metadata: Metadata = {
     siteName: "Ahmed Abo Zahra",
     type: "website",
   },
-  robots: process.env.SITE_INDEXABLE === "true" ? { index: true, follow: true } : { index: false, follow: false },
+  // Known pages opt in. Unknown routes must not inherit indexable metadata.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

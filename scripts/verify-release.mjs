@@ -19,6 +19,9 @@ for (const route of ['/', ...routes]) {
   const title = await page.title();
   assert.ok(!titles.has(title)); titles.add(title);
   assert.equal(await page.locator('h1').count(), 1);
+  if (base === canonicalBase || process.env.QA_INDEXABLE === 'true') {
+    assert.equal(await page.locator('meta[name="robots"]').first().getAttribute('content'), 'index, follow');
+  }
   assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), canonicalBase + (route === '/' ? '' : route));
   assert.ok((await page.locator('meta[name="description"]').getAttribute('content')).length > 40);
   assert.equal(await page.locator('meta[name="twitter:card"]').getAttribute('content'), 'summary_large_image');
@@ -40,8 +43,10 @@ for (const route of ['/', ...routes]) {
   }
   results.push({ route, title, status: 'passed' });
 }
-assert.equal((await page.goto(base + '/work/not-a-real-project')).status(), 404);
-assert.match(await page.locator('meta[name="robots"]').first().getAttribute('content'), /noindex/);
+for (const route of ['/work/not-a-real-project', '/not-a-real-page']) {
+  assert.equal((await page.goto(base + route)).status(), 404);
+  for (const tag of await page.locator('meta[name="robots"]').all()) assert.match(await tag.getAttribute('content'), /noindex/);
+}
 const sitemap = await (await context.request.get(base + '/sitemap.xml')).text();
 for (const route of routes) assert.ok(sitemap.includes(canonicalBase + route));
 assert.equal((await context.request.get(base + '/Ahmed_Abo_Zahra_CV.pdf')).status(), 200);

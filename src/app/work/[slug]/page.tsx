@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${project.name} | Ahmed Abo Zahra`,
+    robots: process.env.SITE_INDEXABLE === "true" ? { index: true, follow: true } : { index: false, follow: false },
     description: project.summary,
     twitter: { card: "summary_large_image", title: `${project.name} | Ahmed Abo Zahra`, description: project.summary, images: [project.image] },
     alternates: { canonical: `/work/${project.slug}` },
