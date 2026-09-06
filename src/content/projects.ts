@@ -17,10 +17,10 @@ export type Project = {
   outcome: string;
 };
 
-export const projects: Project[] = [
+// Add a project here. Order, routes, sitemap and the hero feature are derived from this list.
+const projectEntries: Omit<Project, "number">[] = [
   {
     slug: "easylink-telecom",
-    number: "01",
     name: "Easylink Telecom",
     type: "Client project",
     summary: "A business website designed and developed from visual direction to the systems behind it.",
@@ -37,7 +37,6 @@ export const projects: Project[] = [
   },
   {
     slug: "qalb-zaker",
-    number: "02",
     name: "Qalb Zaker",
     type: "Client project",
     summary: "An Arabic RTL landing page shaped around clarity, responsive design, and motion.",
@@ -54,7 +53,6 @@ export const projects: Project[] = [
   },
   {
     slug: "bookworm",
-    number: "03",
     name: "Bookworm",
     type: "Independent course capstone",
     summary: "A browser-based digital library and reading experience built from an original idea.",
@@ -71,6 +69,11 @@ export const projects: Project[] = [
     outcome: "A live course capstone that demonstrates product thinking, React implementation, and a cohesive editorial interface.",
   },
 ];
+
+export const projects: Project[] = projectEntries.map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

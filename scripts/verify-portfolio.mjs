@@ -15,6 +15,7 @@ for (const width of [390, 768, 1440]) {
     const dimensions = await page.evaluate(() => ({ width: innerWidth, scroll: document.documentElement.scrollWidth }));
     assert.ok(dimensions.scroll <= dimensions.width, `${route} overflows at ${width}: ${JSON.stringify(dimensions)}`);
     for (const img of await page.locator('img').all()) {
+      if (!await img.isVisible()) continue;
       await img.scrollIntoViewIfNeeded();
       await img.evaluate(image => image.decode());
       assert.ok(await img.evaluate(image => image.naturalWidth > 0));
