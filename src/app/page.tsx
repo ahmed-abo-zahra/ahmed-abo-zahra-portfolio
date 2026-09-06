@@ -1,69 +1,72 @@
 import Image from "next/image";
+import MotionExperience from "@/components/motion-experience";
+import { projects } from "@/content/projects";
+
+const skills = [
+  "React", "Next.js", "TypeScript", "PostgreSQL", "UI/UX", "Responsive web", "RTL", "Motion",
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <MotionExperience />
+      <a className="skip-link" href="#work">Skip to work</a>
+      <section className="hero" id="top">
+        <nav className="nav" aria-label="Primary navigation">
+          <a className="monogram" href="#top" aria-label="Ahmed Abo Zahra, home">AZ</a>
+          <div className="nav-rule" aria-hidden="true" />
+          <div className="nav-links">
+            <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+          </div>
+        </nav>
+        <div className="hero-copy">
+          <p className="eyebrow">Ahmed Abo Zahra — Full-Stack Web Developer</p>
+          <h1>Thoughtfully built.<br />Beautifully felt.</h1>
+          <p className="intro">I design and develop web experiences, from the interface to the systems behind it.</p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+            <a className="button button-secondary" href="#contact">Let&apos;s talk <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="portal-scene" aria-hidden="true"><div className="monolith"><div className="portal-ring" /><div className="portal-core" /></div><div className="light-beam" /></div>
+        <a className="scroll-cue" href="#work"><span /> Scroll to explore</a>
+      </section>
+
+      <section className="work-section" id="work" aria-labelledby="work-title">
+        <div className="section-heading">
+          <p className="eyebrow">Selected work</p>
+          <h2 id="work-title">Ideas made tangible.</h2>
+          <p>Three independently built projects across business, Arabic-first communication, and digital reading.</p>
         </div>
-      </main>
-    </div>
+        <div className="projects">
+          {projects.map((project) => (
+            <article className={`project-card ${project.tone}`} data-project-card key={project.name}>
+              <div className="project-art"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 760px) 100vw, 42vw" /><span className="project-number" aria-hidden="true">{project.number}</span></div>
+              <div className="project-details">
+                <div><p className="project-type">{project.type}</p><h3>{project.name}</h3><p>{project.summary}</p></div>
+                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="capabilities" aria-labelledby="capabilities-title">
+        <div className="capability-copy"><p className="eyebrow">Under the surface</p><h2 id="capabilities-title">Good experiences go deeper.</h2><p>Visual decisions, robust interfaces, and the logic that connects them all belong in the same product.</p></div>
+        <div className="capability-diagram"><div className="diagram-line" aria-hidden="true" /><div className="diagram-node node-interface">Interface</div><div className="diagram-node node-logic">Application logic</div><div className="diagram-node node-data">Data</div><div className="skill-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
+      </section>
+
+      <section className="about" id="about" aria-labelledby="about-title">
+        <div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div>
+        <div><p className="eyebrow">A little about me</p><h2 id="about-title">Building with care, from Giza to the web.</h2><p>I&apos;m Ahmed, a Computer Science &amp; Engineering student at New Mansoura University and a freelance full-stack developer. I care about making a website feel considered before someone reads a line of code—and work just as hard on what happens after the click.</p><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
+      </section>
+
+      <section className="contact" id="contact" aria-labelledby="contact-title">
+        <div className="contact-orb" aria-hidden="true" />
+        <p className="eyebrow">Have something in mind?</p><h2 id="contact-title">Let&apos;s build something worth showing.</h2><p>For freelance projects, collaborations, and full-time opportunities.</p>
+        <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <span aria-hidden="true">↗</span></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <span aria-hidden="true">↗</span></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      </section>
+      <footer><span>© {new Date().getFullYear()} Ahmed Abo Zahra</span><a href="https://github.com/ahmedfrhat" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn</a></footer>
+    </main>
   );
 }
