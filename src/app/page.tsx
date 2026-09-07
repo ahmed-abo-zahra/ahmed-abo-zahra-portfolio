@@ -7,6 +7,7 @@ import Capabilities from "@/components/capabilities";
 import Process from "@/components/process";
 import CopyEmail from "@/components/copy-email";
 import LocalTime from "@/components/local-time";
+import ContactForm from "@/components/contact-form";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
@@ -95,6 +96,8 @@ export default function Home() {
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
         <CopyEmail />
         <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <ContactIcon name="email" /></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <ContactIcon name="whatsapp" /></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <ContactIcon name="linkedin" /></a></div>
+        {/* The form appears only once its key is configured, so the direct routes are never replaced by a dead form. */}
+        {process.env.CONTACT_FORM_KEY && <ContactForm />}
       </section>
       <footer><span>© {new Date().getFullYear()} {profile.name}</span><a href={profile.github} target="_blank" rel="noreferrer"><ContactIcon name="github" /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><ContactIcon name="linkedin" /> LinkedIn</a></footer>
     </main>

@@ -34,6 +34,12 @@ Tests cover images, project routes, responsive layouts, the cinematic hero, redu
 
 GitHub `ahmed-abo-zahra/ahmed-abo-zahra-portfolio`, branch `main`, is connected to Vercel project `ahmed-abo-zahra-portfolio` in `shadow2228m-7827s-projects`. A push to main triggers production deployment.
 
+`CONTACT_FORM_KEY` enables the contact form in the contact section. Get a free access key at
+[web3forms.com](https://web3forms.com) using the address the messages should arrive at, add it as an
+environment variable in the Vercel project, and redeploy. Without it the form is not rendered at all
+and the email, WhatsApp and LinkedIn routes stand alone, so the contact section is never broken. The
+key stays server-side: submissions go through a Server Action, never from the browser.
+
 `SITE_INDEXABLE=true` is required for the production build. Noncanonical hosts also receive an `X-Robots-Tag: noindex, nofollow` header. `www` redirects to the canonical domain. No credentials belong in this repository.
 
 Search Console ownership and sitemap submission require the owner's Google session. See `docs/search-console.md`. Lighthouse SEO checks do not guarantee indexing or ranking.
