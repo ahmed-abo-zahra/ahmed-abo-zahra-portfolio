@@ -8,7 +8,9 @@ export function startDesktopMotion() {
     media.add({ desktop: "(min-width: 900px)", mobile: "(max-width: 899px)", motion: "(prefers-reduced-motion: no-preference)" }, (context) => {
       if (!context.conditions?.motion) return;
       const desktop = context.conditions.desktop;
-      const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, anchors: true });
+      // Lenis resolves in-page anchors short of their target on this layout, and native anchor
+      // handling also keeps focus moving for the skip link, so the browser keeps that job.
+      const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, anchors: false });
       let frame = 0;
       const update = (time: number) => {
         lenis.raf(time);

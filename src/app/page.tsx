@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import MotionExperience from "@/components/motion-experience";
 import ContactIcon from "@/components/contact-icon";
@@ -49,9 +50,24 @@ export default function Home() {
           <h2 id="work-title">Ideas made tangible.</h2>
           <p>Independently designed and developed. Explore the ideas, decisions, and details behind each one.</p>
         </div>
+        <ol className="work-index">
+          {projects.map((project) => (
+            <li key={project.slug}>
+              <a href={`#${project.slug}`}>
+                <span className="work-index-number" aria-hidden="true">{project.number}</span>
+                <span className="work-index-name">{project.name}</span>
+                <span className="work-index-type">{project.type}</span>
+                <span className="work-index-mark" aria-hidden="true">↓</span>
+              </a>
+            </li>
+          ))}
+        </ol>
         <div className="exhibits">
           {projects.map((project) => (
-            <article className={`exhibit ${project.tone}`} data-project-card key={project.slug}>
+            <Fragment key={project.slug}>
+            {/* The jump target sits outside the sticky article: a sticky element measures short of its own start. */}
+            <span className="exhibit-anchor" id={project.slug} aria-hidden="true" />
+            <article className={`exhibit ${project.tone}`} data-project-card>
               <div className="exhibit-plate"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 899px) 100vw, 62vw" /></div>
               <div className="exhibit-info">
                 <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
@@ -60,6 +76,7 @@ export default function Home() {
                 <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div>
               </div>
             </article>
+            </Fragment>
           ))}
         </div>
       </section>

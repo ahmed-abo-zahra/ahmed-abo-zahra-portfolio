@@ -51,7 +51,9 @@
 
 /* Architectural introduction: readable server-rendered content, enhanced on scroll. */
 .hero-journey { position:relative; background:var(--ivory); }
-.hero-journey.is-cinematic { height:210svh; }
+/* The pin is long enough to land the transition and short enough to reach the work fast:
+   recruiters give a portfolio 15-30 seconds, so screens before the first project are expensive. */
+.hero-journey.is-cinematic { height:165svh; }
 .hero-journey.is-cinematic .hero { position:sticky; top:0; height:100svh; min-height:40rem; }
 .hero { background:var(--ivory); min-height:100svh; }
 .hero::after { display:none; }
@@ -99,8 +101,19 @@ footer a { display:inline-flex; align-items:center; gap:.5rem; }
 .reveal-plate img { object-fit:cover; object-position:center top; padding:0; }
 .reveal-plate figcaption { bottom:-2.1rem; color:var(--brass-text); font-size:.68rem; font-weight:700; left:0; letter-spacing:.1em; position:absolute; text-transform:uppercase; }
 
+/* A directory of the whole show: the visitor who only gives the page seconds still sees every project. */
+.work-index { border-top:1px solid rgba(121,96,57,.32); list-style:none; margin:clamp(2.5rem,5vw,4rem) 0 0; padding:0; }
+.work-index li { border-bottom:1px solid rgba(121,96,57,.32); }
+.work-index a { align-items:baseline; display:grid; gap:clamp(.6rem,2vw,2rem); grid-template-columns:auto 1fr auto auto; padding:clamp(1rem,1.7vw,1.5rem) 0; transition:color .3s ease,padding .4s cubic-bezier(.22,1,.36,1); }
+.work-index a:hover, .work-index a:focus-visible { color:var(--brass-text); padding-left:1rem; }
+.work-index-number { color:var(--brass-text); font-family:var(--font-cormorant),Georgia,serif; font-size:1.35rem; line-height:1; }
+.work-index-name { font-family:var(--font-cormorant),Georgia,serif; font-size:clamp(1.5rem,2.4vw,2.2rem); letter-spacing:-.03em; line-height:1; }
+.work-index-type { color:var(--muted); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+.work-index-mark { color:var(--brass-text); font-size:.9rem; }
+
 /* Each project is an exhibit that holds the frame for its own moment. */
 .exhibits { margin-top:clamp(3rem,6vw,5.5rem); }
+.exhibit-anchor { display:block; height:0; }
 .exhibit { align-content:center; background:var(--surface); border-top:1px solid rgba(121,96,57,.32); display:grid; gap:clamp(1.6rem,4vw,4.5rem); grid-template-columns:1fr .62fr; min-height:100svh; padding:clamp(2.5rem,6vh,6rem) 0; position:sticky; top:0; }
 .exhibit-plate { align-self:center; aspect-ratio:16/10; background:var(--ivory); box-shadow:0 1.6rem 4rem rgba(16,42,35,.14); position:relative; }
 .exhibit-plate img { object-fit:cover; object-position:center top; }
@@ -129,6 +142,9 @@ footer a { display:inline-flex; align-items:center; gap:.5rem; }
   /* Vertical panels on small screens: sticky stacking needs height these viewports do not have. */
   .exhibit { gap:1.5rem; grid-template-columns:1fr; min-height:0; padding:2.5rem 0; position:static; }
   .exhibit-info { max-width:100%; }
+  .work-index a { grid-template-columns:auto 1fr auto; row-gap:.35rem; }
+  .work-index-type { grid-column:2; grid-row:2; }
+  .work-index-mark { grid-column:3; grid-row:1; }
   .locale-mark { display:none; }
   .nav-links { margin-left:auto; }
   .hero .nav-links a { color:var(--forest); text-shadow:none; }

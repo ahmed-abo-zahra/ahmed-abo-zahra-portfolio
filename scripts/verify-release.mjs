@@ -56,7 +56,13 @@ assert.equal(await page.locator(':focus').textContent(), 'Skip to work');
 await page.keyboard.press('Enter');
 await page.waitForTimeout(1400);
 await page.keyboard.press('Tab');
-assert.match(await page.locator(':focus').textContent(), /Read case study/);
+// The skip link must hand focus to the work itself. Assert that intent, not one link's wording.
+const landed = await page.evaluate(() => {
+  const element = document.activeElement;
+  return { inWork: !!element?.closest('#work'), href: element?.getAttribute('href') ?? '' };
+});
+assert.ok(landed.inWork, `skip link should move focus into the work section, got ${JSON.stringify(landed)}`);
+assert.match(landed.href, /^(#|\/work\/)/);
 assert.deepEqual(errors, []);
 await browser.close();
 
