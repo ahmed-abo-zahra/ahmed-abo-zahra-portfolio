@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const featured = projects[0];
+  const remainingProjects = projects.slice(1);
   return (
     <main>
       <MotionExperience />
@@ -49,8 +50,17 @@ export default function Home() {
           <h2 id="work-title">Ideas made tangible.</h2>
           <p>Independently designed and developed. Explore the ideas, decisions, and details behind my selected work.</p>
         </div>
-        <div className="projects">
-          {projects.map((project) => (
+        {featured && <article className={`featured-case ${featured.tone}`} data-project-card>
+          <div className="project-art featured-case-art"><Image src={featured.image} alt={featured.imageAlt} fill sizes="(max-width: 899px) 100vw, 86vw" /></div>
+          <div className="featured-case-marker"><p className="eyebrow">Featured case study</p><span aria-hidden="true">{featured.number}</span></div>
+          <div className="featured-case-details"><p className="project-type">{featured.type}</p><h3>{featured.name}</h3><p>{featured.summary}</p><div className="project-bottom"><ul aria-label={`${featured.name} technologies`}>{featured.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${featured.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div></div>
+        </article>}
+        <div className="more-work-heading">
+          <p className="eyebrow">More selected work</p>
+          <p>Different problems, each shaped around the people using them.</p>
+        </div>
+        <div className="projects projects-secondary">
+          {remainingProjects.map((project) => (
             <article className={`project-card ${project.tone}`} data-project-card key={project.slug}>
               <div className="project-art"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 760px) 100vw, 42vw" /><span className="project-number" aria-hidden="true">{project.number}</span></div>
               <div className="project-details">
