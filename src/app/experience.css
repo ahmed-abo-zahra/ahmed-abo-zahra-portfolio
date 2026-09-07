@@ -33,8 +33,10 @@
 .craft-chapter { min-height:31rem; padding:5rem 0; border-top:1px solid #456153; }
 .craft-chapter h3 { font-size:clamp(2.8rem,4vw,4.5rem); line-height:.95; letter-spacing:-.045em; margin-bottom:1.5rem; }
 .craft-chapter>p:not(.eyebrow) { color:#c4cec7; line-height:1.85; max-width:32rem; }
-.craft-tags { display:flex; flex-wrap:wrap; gap:.6rem; padding:0; margin:1.5rem 0; list-style:none; }
-.craft-tags li { border:1px solid #738775; padding:.4rem .65rem; font-size:.75rem; color:var(--surface); }
+.craft-tags { display:flex; flex-wrap:wrap; gap:.5rem; padding:0; margin:1.75rem 0; list-style:none; }
+/* Filled chips read as material on the dark ground; hairline outlines disappeared into it. */
+.craft-tags li { background:rgba(247,243,235,.07); border:1px solid rgba(196,170,117,.28); color:#e3ded1; font-size:.68rem; font-weight:700; letter-spacing:.09em; padding:.5rem .75rem; text-transform:uppercase; transition:background .3s ease,border-color .3s ease,color .3s ease; }
+.craft-chapter:hover .craft-tags li { background:rgba(196,170,117,.13); border-color:rgba(196,170,117,.5); color:var(--surface); }
 .craft-link { display:inline-flex; align-items:center; gap:1rem; min-height:44px; font-size:.8rem; color:var(--brass-light); border-bottom:1px solid currentColor; }
 .process-section { padding:8rem clamp(1.25rem,7vw,8rem); background:var(--surface); }
 .process-heading { display:flex; align-items:flex-end; gap:4rem; justify-content:space-between; }

@@ -58,7 +58,17 @@
 .architecture { position:absolute; inset:0; z-index:-1; }
 .architecture img { object-fit:cover; object-position:center; }
 .hero .nav { color:var(--forest); }
-.hero .nav-links { background:var(--surface); border:1px solid rgba(121,96,57,.18); padding:.8rem 1.1rem; gap:1.6rem; }
+/* The navigation carries its own contrast instead of sitting in a floating white chip. */
+.hero .nav-links { background:none; border:0; gap:clamp(1.4rem,2.6vw,2.9rem); padding:0; }
+.hero .nav-links a { color:var(--surface); font-size:.72rem; font-weight:750; letter-spacing:.15em; padding-bottom:.4rem; position:relative; text-shadow:0 1px 12px rgba(16,42,35,.4); text-transform:uppercase; }
+.hero .nav-links a::after { background:var(--brass-light); bottom:0; content:""; height:1px; left:0; position:absolute; transform:scaleX(0); transform-origin:right; transition:transform .45s cubic-bezier(.22,1,.36,1); width:100%; }
+.hero .nav-links a:hover, .hero .nav-links a:focus-visible { color:var(--brass-light); }
+.hero .nav-links a:hover::after, .hero .nav-links a:focus-visible::after { transform:scaleX(1); transform-origin:left; }
+/* Textless scroll affordance: the travelling dot says it without a caption. */
+.scroll-cue { gap:0; }
+.scroll-cue span::after { animation:scroll-cue-travel 2.8s cubic-bezier(.6,0,.4,1) infinite; }
+@keyframes scroll-cue-travel { 0% { opacity:0; transform:translateY(-2.2rem); } 22% { opacity:1; } 78% { opacity:1; } 100% { opacity:0; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { .scroll-cue span::after { animation:none; } }
 .hero-copy { max-width:52%; padding-top:clamp(5rem,14vh,10rem); padding-bottom:7rem; }
 .hero h1 { font-size:clamp(3.6rem,6.2vw,7.5rem); letter-spacing:-.055em; }
 .hero .eyebrow { max-width:27rem; line-height:1.7; color:var(--forest); }
@@ -77,9 +87,10 @@ footer a { display:inline-flex; align-items:center; gap:.5rem; }
 /* Identity: a wordmark reads as a name, where the old monogram read as a puzzle. */
 .wordmark { font-family:var(--font-cormorant),Georgia,serif; font-size:clamp(1.35rem,1.9vw,1.7rem); font-weight:500; letter-spacing:-.02em; line-height:1; white-space:nowrap; }
 .wordmark span { color:var(--brass-text); }
-.availability { align-items:center; border:1px solid rgba(121,96,57,.32); border-radius:2rem; color:var(--brass-text); display:inline-flex; font-size:.7rem; font-weight:700; gap:.5rem; letter-spacing:.08em; margin:0 auto 0 0; padding:.5rem .9rem; text-transform:uppercase; white-space:nowrap; }
-.availability-dot { background:#2f7d5c; border-radius:50%; box-shadow:0 0 0 0 rgba(47,125,92,.55); flex:none; height:.45rem; width:.45rem; animation:availability-pulse 2.6s ease-out infinite; }
-@keyframes availability-pulse { 70% { box-shadow:0 0 0 .45rem rgba(47,125,92,0); } 100% { box-shadow:0 0 0 0 rgba(47,125,92,0); } }
+/* A gallery plaque, not a status badge: place and local time read as confidence, not availability pleading. */
+.locale-mark { align-items:center; color:var(--brass-text); display:inline-flex; font-size:.68rem; font-weight:700; gap:.7rem; letter-spacing:.14em; margin:0 auto 0 0; text-transform:uppercase; white-space:nowrap; }
+.locale-rule { background:rgba(121,96,57,.5); height:1px; width:1.6rem; }
+.locale-time { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.72rem; font-variant-numeric:tabular-nums; letter-spacing:.06em; }
 
 /* The portal opens on the whole wall, so no single project is elevated above the others. */
 .reveal-wall { align-content:center; display:grid; gap:clamp(1.2rem,3vw,3.2rem); grid-template-columns:repeat(3,1fr); inset:0; padding:8vh clamp(2rem,5vw,5rem) 14vh; position:absolute; }
@@ -118,8 +129,9 @@ footer a { display:inline-flex; align-items:center; gap:.5rem; }
   /* Vertical panels on small screens: sticky stacking needs height these viewports do not have. */
   .exhibit { gap:1.5rem; grid-template-columns:1fr; min-height:0; padding:2.5rem 0; position:static; }
   .exhibit-info { max-width:100%; }
-  .availability { display:none; }
+  .locale-mark { display:none; }
   .nav-links { margin-left:auto; }
+  .hero .nav-links a { color:var(--forest); text-shadow:none; }
 }
 @media (prefers-reduced-motion:reduce) {
   .hero-journey.is-cinematic { height:auto; }

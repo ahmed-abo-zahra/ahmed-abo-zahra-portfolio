@@ -5,6 +5,7 @@ import ContactIcon from "@/components/contact-icon";
 import Capabilities from "@/components/capabilities";
 import Process from "@/components/process";
 import CopyEmail from "@/components/copy-email";
+import LocalTime from "@/components/local-time";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
@@ -22,7 +23,7 @@ export default function Home() {
         <div className="architecture" aria-hidden="true"><Image src="/images/hero/architecture-v2.jpg" alt="" fill loading="eager" fetchPriority="high" sizes="100vw" /></div>
         <nav className="nav" aria-label="Primary navigation">
           <a className="wordmark" href="#top" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</a>
-          <p className="availability"><span className="availability-dot" aria-hidden="true" />Available for freelance work</p>
+          <LocalTime />
           <div className="nav-links">
             <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
           </div>
@@ -37,7 +38,7 @@ export default function Home() {
           </div>
         </div>
         <div className="portal-reveal" aria-hidden="true"><div className="reveal-surface"><div className="reveal-wall">{projects.map((project) => <figure className="reveal-plate" key={project.slug}><Image src={project.image} alt="" fill sizes="33vw" /><figcaption>{project.number} — {project.name}</figcaption></figure>)}</div><div className="reveal-caption"><span>The work</span><span>{projects.length} projects</span></div></div></div>
-        <a className="scroll-cue" href="#work"><span /> Scroll to explore</a>
+        <div className="scroll-cue" aria-hidden="true"><span /></div>
         <div className="journey-progress" aria-hidden="true"><span /></div>
       </section>
       </div>
