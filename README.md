@@ -37,8 +37,12 @@ GitHub `ahmed-abo-zahra/ahmed-abo-zahra-portfolio`, branch `main`, is connected 
 `CONTACT_FORM_KEY` enables the contact form in the contact section. Get a free access key at
 [web3forms.com](https://web3forms.com) using the address the messages should arrive at, add it as an
 environment variable in the Vercel project, and redeploy. Without it the form is not rendered at all
-and the email, WhatsApp and LinkedIn routes stand alone, so the contact section is never broken. The
-key stays server-side: submissions go through a Server Action, never from the browser.
+and the email, WhatsApp and LinkedIn routes stand alone, so the contact section is never broken.
+
+The browser posts the submission directly to the form provider, which is what its free plan allows:
+server-side calls are refused with `This method is not allowed. Use our API in client side`. The key
+is public by design and is registered against `ahmedabozahra.me`, so submissions from other origins,
+`localhost` included, are rejected by CORS. Test the form on the deployed domain, not locally.
 
 `SITE_INDEXABLE=true` is required for the production build. Noncanonical hosts also receive an `X-Robots-Tag: noindex, nofollow` header. `www` redirects to the canonical domain. No credentials belong in this repository.
 
