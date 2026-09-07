@@ -39,6 +39,20 @@ export function startDesktopMotion() {
         gsap.to(".architecture", { y: 24, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
       }
       gsap.utils.toArray<HTMLElement>("[data-project-card]").forEach((card) => {
+        const plate = card.querySelector(".exhibit-plate");
+        const info = card.querySelector(".exhibit-info");
+        if (desktop && plate && info) {
+          // Each exhibit settles into place as it takes the frame, then eases back as the next covers it.
+          gsap.fromTo(plate, { scale: 1.08, yPercent: 4 }, {
+            scale: 1, yPercent: 0, ease: "power2.out",
+            scrollTrigger: { trigger: card, start: "top 90%", end: "top 12%", scrub: 0.6 },
+          });
+          gsap.from(info.children, {
+            y: 26, opacity: 0, duration: 0.7, stagger: 0.09, ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 68%", once: true },
+          });
+          return;
+        }
         gsap.from(card, {
           y: 36,
           duration: 0.8,

@@ -13,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const featured = projects[0];
-  const remainingProjects = projects.slice(1);
   return (
     <main>
       <MotionExperience />
@@ -23,8 +21,8 @@ export default function Home() {
       <section className="hero" aria-label="Introduction">
         <div className="architecture" aria-hidden="true"><Image src="/images/hero/architecture-v2.jpg" alt="" fill loading="eager" fetchPriority="high" sizes="100vw" /></div>
         <nav className="nav" aria-label="Primary navigation">
-          <a className="monogram" href="#top" aria-label="AZ — Ahmed Abo Zahra, home">AZ</a>
-          <div className="nav-rule" aria-hidden="true" />
+          <a className="wordmark" href="#top" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</a>
+          <p className="availability"><span className="availability-dot" aria-hidden="true" />Available for freelance work</p>
           <div className="nav-links">
             <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
           </div>
@@ -38,7 +36,7 @@ export default function Home() {
             <a className="button button-secondary" href="#contact">Let&apos;s talk <ContactIcon name="chat" /></a>
           </div>
         </div>
-        {featured && <div className="portal-reveal" aria-hidden="true"><div className="reveal-surface"><Image src={featured.image} alt="" fill sizes="100vw" /><div className="reveal-caption"><span>01 / Selected work</span><span>{featured.name}</span></div></div></div>}
+        <div className="portal-reveal" aria-hidden="true"><div className="reveal-surface"><div className="reveal-wall">{projects.map((project) => <figure className="reveal-plate" key={project.slug}><Image src={project.image} alt="" fill sizes="33vw" /><figcaption>{project.number} — {project.name}</figcaption></figure>)}</div><div className="reveal-caption"><span>The work</span><span>{projects.length} projects</span></div></div></div>
         <a className="scroll-cue" href="#work"><span /> Scroll to explore</a>
         <div className="journey-progress" aria-hidden="true"><span /></div>
       </section>
@@ -46,25 +44,18 @@ export default function Home() {
 
       <section className="work-section" id="work" aria-labelledby="work-title">
         <div className="section-heading">
-          <p className="eyebrow">Selected work</p>
+          <p className="eyebrow">The work</p>
           <h2 id="work-title">Ideas made tangible.</h2>
-          <p>Independently designed and developed. Explore the ideas, decisions, and details behind my selected work.</p>
+          <p>Independently designed and developed. Explore the ideas, decisions, and details behind each one.</p>
         </div>
-        {featured && <article className={`featured-case ${featured.tone}`} data-project-card>
-          <div className="project-art featured-case-art"><Image src={featured.image} alt={featured.imageAlt} fill sizes="(max-width: 899px) 100vw, 86vw" /></div>
-          <div className="featured-case-marker"><p className="eyebrow">Featured case study</p><span aria-hidden="true">{featured.number}</span></div>
-          <div className="featured-case-details"><p className="project-type">{featured.type}</p><h3>{featured.name}</h3><p>{featured.summary}</p><div className="project-bottom"><ul aria-label={`${featured.name} technologies`}>{featured.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${featured.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div></div>
-        </article>}
-        <div className="more-work-heading">
-          <p className="eyebrow">More selected work</p>
-          <p>Different problems, each shaped around the people using them.</p>
-        </div>
-        <div className="projects projects-secondary">
-          {remainingProjects.map((project) => (
-            <article className={`project-card ${project.tone}`} data-project-card key={project.slug}>
-              <div className="project-art"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 760px) 100vw, 42vw" /><span className="project-number" aria-hidden="true">{project.number}</span></div>
-              <div className="project-details">
-                <div><p className="project-type">{project.type}</p><h3>{project.name}</h3><p>{project.summary}</p></div>
+        <div className="exhibits">
+          {projects.map((project) => (
+            <article className={`exhibit ${project.tone}`} data-project-card key={project.slug}>
+              <div className="exhibit-plate"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 899px) 100vw, 62vw" /></div>
+              <div className="exhibit-info">
+                <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
+                <h3>{project.name}</h3>
+                <p>{project.summary}</p>
                 <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div>
               </div>
             </article>

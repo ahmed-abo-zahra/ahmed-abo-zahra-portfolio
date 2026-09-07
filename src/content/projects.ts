@@ -6,8 +6,8 @@ export type Project = {
   summary: string;
   role: string;
   technologies: string[];
+  // Projects link to the live site only. Source repositories are deliberately not surfaced.
   liveUrl: string;
-  repositoryUrl?: string;
   image: string;
   mobileImage: string;
   imageAlt: string;
@@ -59,7 +59,6 @@ const projectEntries: Omit<Project, "number">[] = [
     role: "Individually designed and developed",
     technologies: ["React", "APIs", "UX"],
     liveUrl: "https://bookworm-iota-livid.vercel.app/",
-    repositoryUrl: "https://github.com/ahmedfrhat/bookworm-reader",
     image: "/images/projects/bookworm-hero.png",
     mobileImage: "/images/projects/bookworm-hero-mobile.png",
     imageAlt: "Bookworm digital library homepage",

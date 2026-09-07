@@ -54,7 +54,7 @@ export default async function ProjectPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <a className="skip-link" href="#project-overview">Skip to project</a>
       <nav className="case-nav" aria-label="Case study navigation">
-        <Link className="monogram" href="/" aria-label="AZ — Ahmed Abo Zahra, home">AZ</Link>
+        <Link className="wordmark" href="/" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</Link>
         <Link href="/#work">← All work</Link>
       </nav>
 
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: Props) {
 
       <section className="case-footer">
         <div><p className="eyebrow">Built with</p><ul>{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul></div>
-        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">Visit live site <span aria-hidden="true">↗</span></a>{project.repositoryUrl && <a className="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noreferrer">View repository <ContactIcon name="github" /></a>}</div>
+        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">Visit live site <span aria-hidden="true">↗</span></a></div>
       </section>
       <nav className="case-next" aria-label="Continue exploring">{nextProject && <Link href={`/work/${nextProject.slug}`}><span className="eyebrow">Next project</span><strong>{nextProject.name} <span aria-hidden="true">↗</span></strong></Link>}<a className="button button-secondary" href={`mailto:${profile.email}`}>Discuss a project <ContactIcon name="email" /></a></nav>
     </main>
