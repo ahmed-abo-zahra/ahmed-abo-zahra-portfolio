@@ -59,13 +59,10 @@ export function startDesktopMotion() {
           scrollTrigger: { trigger: card, start: "top 82%", once: true },
         });
       });
-      if (desktop) {
-        const stack = gsap.timeline({ scrollTrigger: { trigger: ".craft-chapters", start: "top 65%", end: "bottom 80%", scrub: 0.7 } });
-        stack.to(".plane-interface", { y: -170, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
-          .to(".plane-logic", { y: 90, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
-          .to(".plane-data", { y: 290, rotateX: 6, rotateY: -8, rotateZ: -4, duration: 1 }, 0)
-          .to(".craft-orbit", { scale: 1.1, duration: 1 }, 0);
-      }
+      gsap.from(".study-phone", { y: 48, rotate: 5, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".responsive-study", start: "top 80%", once: true } });
+      gsap.utils.toArray<HTMLElement>(".craft-chapter, .about-portrait, .about-facts, .contact-intro").forEach((section) => {
+        gsap.from(section, { y: 28, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 88%", once: true } });
+      });
       gsap.from(".process-track span", { scaleX: 0, ease: "none", scrollTrigger: { trigger: ".process-section", start: "top 70%", end: "bottom 75%", scrub: true } });
       gsap.from(".process-steps li", { y: 24, stagger: 0.12, duration: 0.65, scrollTrigger: { trigger: ".process-steps", start: "top 88%", once: true } });
       return () => {

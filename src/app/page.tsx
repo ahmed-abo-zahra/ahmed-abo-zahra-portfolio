@@ -53,7 +53,7 @@ export default function Home() {
 
       <section className="work-section" id="work" aria-labelledby="work-title">
         <div className="section-heading">
-          <p className="eyebrow">The work</p>
+          <p className="eyebrow">Selected work <span className="work-count">{String(projects.length).padStart(2, "0")} projects · Built independently</span></p>
           <h2 id="work-title">Ideas made tangible.</h2>
           <p>Independently designed and developed. Explore the ideas, decisions, and details behind each one.</p>
         </div>
@@ -68,7 +68,7 @@ export default function Home() {
                 <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
                 <h3>{project.name}</h3>
                 <p>{project.summary}</p>
-                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a></div>
+                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a></div></div>
               </div>
             </article>
             </Fragment>
@@ -80,16 +80,17 @@ export default function Home() {
       <Process />
 
       <section className="about" id="about" aria-labelledby="about-title">
-        <div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div>
+        <figure className="about-portrait"><div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div><figcaption>Ahmed Abo Zahra <span>Developer · Egypt</span></figcaption></figure>
         <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a freelance full-stack developer and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design and the development.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="contact-orb" aria-hidden="true" />
-        <p className="eyebrow">Have something in mind?</p><h2 id="contact-title">Let&apos;s build something worth showing.</h2><p>For freelance projects, collaborations, and full-time opportunities.</p>
+        <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Have an idea?<br />Let&apos;s make it real.</h2><p>For freelance projects, collaborations, and full-time opportunities. Tell me what you have in mind.</p>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
         <CopyEmail />
         <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <ContactIcon name="email" /></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <ContactIcon name="whatsapp" /></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <ContactIcon name="linkedin" /></a></div>
+        </div>
         {/* The form appears only once its key is configured, so the direct routes are never replaced by a dead form. */}
         {process.env.CONTACT_FORM_KEY && <ContactForm accessKey={process.env.CONTACT_FORM_KEY} />}
       </section>

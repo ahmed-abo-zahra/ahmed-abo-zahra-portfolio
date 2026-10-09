@@ -10,7 +10,7 @@ const page = await context.newPage();
 const errors = [];
 page.on('pageerror', error => errors.push(error.message));
 await page.goto(base);
-const routes = await page.locator('.project-bottom a').evaluateAll(links => links.map(a => a.getAttribute('href')));
+const routes = await page.locator('.project-bottom a[href^="/work/"]').evaluateAll(links => links.map(a => a.getAttribute('href')));
 assert.ok(routes.length >= 3);
 const titles = new Set();
 const results = [];

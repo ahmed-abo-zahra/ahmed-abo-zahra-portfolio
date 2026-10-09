@@ -6,16 +6,15 @@ const layers = [
 
 export default function Capabilities() {
   return <section className="craft-section" aria-labelledby="craft-title">
-    <header className="craft-heading"><p className="eyebrow">Under the surface</p><h2 id="craft-title">One experience.<br />Every layer considered.</h2><p>From the first impression to the functionality underneath.</p></header>
+    <header className="craft-heading"><p className="eyebrow">What I bring to the build</p><h2 id="craft-title">A clear interface.<br />A considered system.</h2><p>Design decisions and technical decisions, made together.</p></header>
     <div className="craft-story">
       <div className="craft-visual" aria-hidden="true">
-        <div className="craft-orbit" />
-        <div className="system-stack">
-          <div className="system-plane plane-data"><span className="plane-label">03 / Data</span><div className="data-row"><span>content</span><i /><i /><i /></div><div className="data-row"><span>structure</span><i /><i /><i /></div><div className="data-row"><span>relationships</span><i /><i /><i /></div></div>
-          <div className="system-plane plane-logic"><span className="plane-label">02 / Application logic</span><div className="logic-flow"><span>Request</span><b>→</b><span>Process</span><b>→</b><span>Response</span></div><div className="logic-line" /><small>Actions connected with intention.</small></div>
-          <div className="system-plane plane-interface"><div className="mini-browser"><i /><i /><i /><span>01 / Interface</span></div><div className="mini-layout"><div><span className="mini-kicker">Considered by design</span><strong>Made to<br />make sense.</strong><span className="mini-button">Explore</span></div><div className="mini-portal" /></div></div>
+        <div className="responsive-study">
+          <span className="study-label">One idea. Different screens.</span>
+          <div className="study-desktop"><div className="study-bar"><i /><i /><i /></div><div className="study-content"><span /><strong>Clarity,<br />at every size.</strong><div className="study-blocks"><i /><i /><i /></div></div></div>
+          <div className="study-phone"><div className="study-bar" /><strong>Clarity,<br />at every size.</strong><div className="study-blocks"><i /><i /><i /></div></div>
+          <div className="study-baseline"><span>Responsive</span><span>Connected</span><span>Considered</span></div>
         </div>
-        <p className="stack-caption">Interface <span>·</span> Logic <span>·</span> Data</p>
       </div>
       <div className="craft-chapters">{layers.map(layer => <article className="craft-chapter" data-layer={layer.id} key={layer.id}>
         <p className="eyebrow">{layer.number} / {layer.id === "logic" ? "Application logic" : layer.id}</p><h3>{layer.title}</h3><p>{layer.description}</p><ul className="craft-tags" aria-label={`${layer.id} skills`}>{layer.tags.map(tag => <li key={tag}>{tag}</li>)}</ul><a className="craft-link" href={layer.href}>{layer.evidence} <span aria-hidden="true">↗</span></a>

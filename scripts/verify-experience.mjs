@@ -26,7 +26,8 @@ for (const width of [390, 768, 1440]) {
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
-  assert.ok(await page.locator('.system-plane').evaluateAll(elements => elements.every(element => !element.style.transform)));
+  assert.equal(await page.locator('.study-phone').count(), 1);
+  assert.equal(await page.locator('.study-phone').evaluate(element => getComputedStyle(element).transform), 'none');
   await context.close();
 }
 const page = await browser.newPage({ javaScriptEnabled: false });
