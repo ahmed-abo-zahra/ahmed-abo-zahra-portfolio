@@ -22,7 +22,14 @@ export default function Home() {
       <a className="skip-link" href="#work">Skip to work</a>
       <div className="hero-journey" id="top">
       <section className="hero" aria-label="Introduction">
-        <div className="architecture" aria-hidden="true"><Image src="/images/hero/architecture-v2.jpg" alt="" fill loading="eager" fetchPriority="high" sizes="100vw" /></div>
+        <div className="architecture build-scene" aria-hidden="true">
+          <div className="scene-grid" />
+          <div className="scene-caption">From an idea to an experience.</div>
+          <div className="build-layer layer-data"><span className="layer-label">03 / Data</span><div className="data-lines"><i /><i /><i /></div><span className="layer-note">A reliable foundation</span></div>
+          <div className="build-layer layer-logic"><span className="layer-label">02 / Function</span><div className="logic-path"><i /><span /><i /><span /><i /></div><span className="layer-note">Every action connected</span></div>
+          <div className="build-layer layer-interface"><div className="scene-browser"><span /><span /><span /></div><span className="layer-label">01 / Interface</span><strong>Made to<br />make sense.</strong><div className="scene-ui"><i /><i /></div><span className="layer-note">Thoughtful by design</span></div>
+          <div className="scene-footer">Design · Development · Delivery</div>
+        </div>
         <nav className="nav" aria-label="Primary navigation">
           <a className="wordmark" href="#top" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</a>
           <LocalTime />
@@ -32,14 +39,13 @@ export default function Home() {
         </nav>
         <div className="hero-copy">
           <p className="eyebrow">Ahmed Abo Zahra — Full-Stack Web Developer</p>
-          <h1>Thoughtfully built.<br />Beautifully felt.</h1>
-          <p className="intro">I design and develop web experiences, from the interface to the systems behind it.</p>
+          <h1>Designed with care.<br />Built to work.</h1>
+          <p className="intro">I turn ideas into websites people can use — taking care of the interface, the functionality, and the details in between.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
             <a className="button button-secondary" href="#contact">Let&apos;s talk <ContactIcon name="chat" /></a>
           </div>
         </div>
-        <div className="portal-reveal" aria-hidden="true"><div className="reveal-surface"><div className="reveal-wall">{projects.map((project) => <figure className="reveal-plate" key={project.slug}><Image src={project.image} alt="" fill sizes="33vw" /><figcaption>{project.number} — {project.name}</figcaption></figure>)}</div><div className="reveal-caption"><span>The work</span><span>{projects.length} projects</span></div></div></div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
         <div className="journey-progress" aria-hidden="true"><span /></div>
       </section>
@@ -51,18 +57,6 @@ export default function Home() {
           <h2 id="work-title">Ideas made tangible.</h2>
           <p>Independently designed and developed. Explore the ideas, decisions, and details behind each one.</p>
         </div>
-        <ol className="work-index">
-          {projects.map((project) => (
-            <li key={project.slug}>
-              <a href={`#${project.slug}`}>
-                <span className="work-index-number" aria-hidden="true">{project.number}</span>
-                <span className="work-index-name">{project.name}</span>
-                <span className="work-index-type">{project.type}</span>
-                <span className="work-index-mark" aria-hidden="true">↓</span>
-              </a>
-            </li>
-          ))}
-        </ol>
         <div className="exhibits">
           {projects.map((project) => (
             <Fragment key={project.slug}>

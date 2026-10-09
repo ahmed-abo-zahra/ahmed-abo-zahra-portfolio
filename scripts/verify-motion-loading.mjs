@@ -17,7 +17,7 @@ for (const [width, reducedMotion] of [[390, 'no-preference'], [1440, 'reduce'], 
   assert.equal(source.includes('ScrollTrigger'), shouldLoad, `${width}/${reducedMotion}`);
   results.push({ width, reducedMotion, desktopLibraryLoaded: shouldLoad, scriptBytesDecoded: Buffer.byteLength(source) });
   if (shouldLoad) {
-    await page.locator('.hero-journey.is-cinematic').waitFor();
+    await page.locator('.build-scene').waitFor();
     await page.setViewportSize({ width: 390, height: 900 });
     await page.locator('.hero-journey.is-cinematic').waitFor({ state: 'detached' });
     await page.emulateMedia({ reducedMotion: 'reduce' });

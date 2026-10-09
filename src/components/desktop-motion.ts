@@ -24,18 +24,15 @@ export function startDesktopMotion() {
       };
       document.addEventListener("visibilitychange", onVisibility);
 
-      if (desktop && document.querySelector(".portal-reveal")) {
+      if (desktop && document.querySelector(".build-scene")) {
         const journey = document.querySelector<HTMLElement>(".hero-journey")!;
-        journey.classList.add("is-cinematic");
         const timeline = gsap.timeline({ scrollTrigger: {
-          trigger: journey, start: "top top", end: "bottom bottom", scrub: 0.65,
+          trigger: journey, start: "top top", end: "bottom top", scrub: 0.65,
           invalidateOnRefresh: true,
         }});
-        timeline.to(".hero-copy, .hero .nav, .scroll-cue", { autoAlpha: 0, y: -35, duration: 0.25 }, 0)
-          .to(".architecture", { scale: 2.7, transformOrigin: "72% 47%", duration: 1, ease: "power1.inOut" }, 0)
-          .fromTo(".portal-reveal", { clipPath: "circle(0% at 72% 47%)" }, { clipPath: "circle(110% at 72% 47%)", duration: 0.65, ease: "power2.inOut" }, 0.28)
-          .fromTo(".reveal-surface", { scale: 1.16 }, { scale: 1, duration: 0.65, ease: "power1.out" }, 0.3)
-          .fromTo(".reveal-caption", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.18 }, 0.8)
+        timeline.to(".layer-interface", { y: -75, rotateZ: -3, duration: 1, ease: "none" }, 0)
+          .to(".layer-logic", { y: -20, x: 20, duration: 1, ease: "none" }, 0)
+          .to(".layer-data", { y: 45, x: 35, duration: 1, ease: "none" }, 0)
           .to(".journey-progress span", { scaleX: 1, duration: 1, ease: "none" }, 0);
       } else {
         gsap.to(".architecture", { y: 24, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
