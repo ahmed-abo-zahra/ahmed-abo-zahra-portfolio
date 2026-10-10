@@ -77,14 +77,21 @@ export default async function ProjectPage({ params }: Props) {
         <div><p className="eyebrow">Outcome</p><p>{project.outcome}</p></div>
       </section>
 
+      <section className="case-details" aria-label="Implementation details">
+        <div><h2>My role</h2><p>{project.roleDetails}</p></div>
+        <div><h2>Key features</h2><ul>{project.keyFeatures.map(feature => <li key={feature}>{feature}</li>)}</ul></div>
+      </section>
+
       <section className="case-gallery" aria-label={`${project.name} desktop and mobile views`}>
         <div className="desktop-shot"><ProjectImage src={project.image} alt={`${project.name} desktop view`} sizes="(max-width: 900px) 100vw, 67vw" /></div>
         <div className="mobile-shot"><ProjectImage src={project.mobileImage} alt={`${project.name} mobile view`} sizes="(max-width: 900px) 70vw, 22vw" /></div>
       </section>
 
+      {project.detailImage && <figure className="case-feature-shot"><ProjectImage src={project.detailImage} alt={project.detailImageAlt ?? project.name} sizes="90vw" /><figcaption>{project.detailImageAlt}</figcaption></figure>}
+
       <section className="case-footer">
         <div><p className="eyebrow">Built with</p><ul>{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul></div>
-        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">Visit live site <span aria-hidden="true">↗</span></a></div>
+        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">View live site <span aria-hidden="true">↗</span></a>{project.sourceUrl && <a className="button button-secondary" href={project.sourceUrl} target="_blank" rel="noreferrer">View source code <ContactIcon name="github" /></a>}</div>
       </section>
       <nav className="case-next" aria-label="Continue exploring">{nextProject && <Link href={`/work/${nextProject.slug}`}><span className="eyebrow">Next project</span><strong>{nextProject.name} <span aria-hidden="true">↗</span></strong></Link>}<a className="button button-secondary" href={`mailto:${profile.email}`}>Discuss a project <ContactIcon name="email" /></a></nav>
     </main>

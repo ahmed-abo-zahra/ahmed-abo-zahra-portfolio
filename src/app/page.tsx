@@ -38,12 +38,12 @@ export default function Home() {
           </div>
         </nav>
         <div className="hero-copy">
-          <p className="eyebrow">Ahmed Abo Zahra — Full-Stack Web Developer</p>
+          <p className="eyebrow">Ahmed Abo Zahra — React &amp; Next.js Developer</p>
           <h1>Designed with care.<br />Built to work.</h1>
-          <p className="intro">I turn ideas into websites people can use — taking care of the interface, the functionality, and the details in between.</p>
+          <p className="intro">I design and build responsive business websites and web interfaces with React, Next.js, and TypeScript — with particular care for Arabic RTL experiences.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
-            <a className="button button-secondary" href="#contact">Let&apos;s talk <ContactIcon name="chat" /></a>
+            <a className="button button-primary" href="#work">View my work <span aria-hidden="true">↗</span></a>
+            <a className="button button-secondary" href="#contact">Discuss your project <ContactIcon name="chat" /></a>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
@@ -68,7 +68,7 @@ export default function Home() {
                 <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
                 <h3>{project.name}</h3>
                 <p>{project.summary}</p>
-                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`}>Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a></div></div>
+                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`} target="_blank" rel="noreferrer">Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a></div></div>
               </div>
             </article>
             </Fragment>
@@ -76,17 +76,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="services-section" id="services" aria-labelledby="services-title">
+        <header><p className="eyebrow">How I can help</p><h2 id="services-title">A website with a purpose.</h2><p>Focused services for businesses, products, and existing websites.</p></header>
+        <div className="service-grid">{[
+          ["Business Websites", "Company websites that present your services clearly and make it easy for customers to get in touch."],
+          ["Landing Pages", "Responsive landing pages for a product or service, with a clear message and a focused path to action."],
+          ["React & Next.js Interfaces", "Web interfaces built with React and Next.js, including API integration and useful loading, empty, and error states."],
+          ["Responsive & RTL Fixes", "Fixes for mobile layouts, spacing, and Arabic right-to-left interfaces on your existing website."],
+        ].map(([title, description], index) => <article key={title}><span className="eyebrow">0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+      </section>
       <Capabilities />
       <Process />
 
       <section className="about" id="about" aria-labelledby="about-title">
         <figure className="about-portrait"><div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div><figcaption>Ahmed Abo Zahra <span>Developer · Egypt</span></figcaption></figure>
-        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a freelance full-stack developer and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design and the development.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a freelance React and Next.js developer and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design and the development.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="contact-orb" aria-hidden="true" />
-        <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Have an idea?<br />Let&apos;s make it real.</h2><p>For freelance projects, collaborations, and full-time opportunities. Tell me what you have in mind.</p>
+        <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Have an idea?<br />Let&apos;s make it real.</h2><p>Tell me what you need to build, what you already have, and your target launch date.</p>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
         <CopyEmail />
         <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <ContactIcon name="email" /></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <ContactIcon name="whatsapp" /></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <ContactIcon name="linkedin" /></a></div>

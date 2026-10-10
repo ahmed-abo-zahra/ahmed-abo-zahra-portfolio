@@ -9,15 +9,15 @@ const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], displa
 const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Ahmed Abo Zahra | Full-Stack Web Developer",
-  description: "Explore Ahmed Abo Zahra's web development work, from responsive interfaces and motion to full-stack functionality.",
+  title: "Ahmed Abo Zahra | React & Next.js Developer",
+  description: "Ahmed Abo Zahra builds responsive business websites, landing pages, and React and Next.js interfaces, with particular care for Arabic RTL experiences.",
   metadataBase: new URL("https://ahmedabozahra.me"),
   authors: [{ name: profile.name, url: profile.website }],
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Ahmed Abo Zahra | Full-Stack Web Developer",
-    description: "Full-stack web development work across responsive interfaces, motion, and product functionality.",
+    title: "Ahmed Abo Zahra | React & Next.js Developer",
+    description: "Responsive business websites, landing pages, and React and Next.js interfaces, with particular care for Arabic RTL experiences.",
     url: "/",
     siteName: "Ahmed Abo Zahra",
     type: "website",
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     "@id": `${profile.website}/#person`,
     name: "Ahmed Abo Zahra",
     url: "https://ahmedabozahra.me",
-    jobTitle: "Full-Stack Web Developer",
+    jobTitle: "React & Next.js Developer",
     email: "mailto:ahmedabozahra68@gmail.com",
     image: `${profile.website}/images/portrait/ahmed-abo-zahra.jpg`,
     sameAs: [profile.github, profile.linkedin],

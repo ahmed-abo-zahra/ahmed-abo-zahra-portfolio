@@ -38,6 +38,7 @@ export default function ContactForm({ accessKey }: { accessKey: string }) {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(Object.fromEntries(data)),
+        signal: AbortSignal.timeout(20000),
       });
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error(result.message ?? "Request failed");
