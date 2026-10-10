@@ -25,7 +25,7 @@ export default function Home() {
         <div className="architecture build-scene" aria-hidden="true">
           <div className="scene-grid" />
           <div className="scene-caption">From an idea to an experience.</div>
-          <div className="build-layer layer-data"><span className="layer-label">03 / Data</span><div className="data-lines"><i /><i /><i /></div><span className="layer-note">A reliable foundation</span></div>
+          <div className="build-layer layer-data"><span className="layer-label">03 / Structure</span><div className="data-lines"><i /><i /><i /></div><span className="layer-note">A clear page structure</span></div>
           <div className="build-layer layer-logic"><span className="layer-label">02 / Function</span><div className="logic-path"><i /><span /><i /><span /><i /></div><span className="layer-note">Every action connected</span></div>
           <div className="build-layer layer-interface"><div className="scene-browser"><span /><span /><span /></div><span className="layer-label">01 / Interface</span><strong>Made to<br />make sense.</strong><div className="scene-ui"><i /><i /></div><span className="layer-note">Thoughtful by design</span></div>
           <div className="scene-footer">Design · Development · Delivery</div>

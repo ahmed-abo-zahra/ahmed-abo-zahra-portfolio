@@ -17,7 +17,7 @@ export default function Capabilities() {
         </div>
       </div>
       <div className="craft-chapters">{layers.map(layer => <article className="craft-chapter" data-layer={layer.id} key={layer.id}>
-        <p className="eyebrow">{layer.number} / {layer.id === "logic" ? "Application logic" : layer.id}</p><h3>{layer.title}</h3><p>{layer.description}</p><ul className="craft-tags" aria-label={`${layer.id} skills`}>{layer.tags.map(tag => <li key={tag}>{tag}</li>)}</ul><a className="craft-link" href={layer.href} target="_blank" rel="noreferrer">{layer.evidence} <span aria-hidden="true">↗</span></a>
+        <p className="eyebrow">{layer.number} / {layer.id === "logic" ? "Application logic" : layer.id === "data" ? "Structure" : layer.id}</p><h3>{layer.title}</h3><p>{layer.description}</p><ul className="craft-tags" aria-label={`${layer.id === "data" ? "structure" : layer.id} skills`}>{layer.tags.map(tag => <li key={tag}>{tag}</li>)}</ul><a className="craft-link" href={layer.href} target="_blank" rel="noreferrer">{layer.evidence} <span aria-hidden="true">↗</span></a>
       </article>)}</div>
     </div>
   </section>;
