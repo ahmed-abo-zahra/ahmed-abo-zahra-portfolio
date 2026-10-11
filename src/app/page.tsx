@@ -38,9 +38,9 @@ export default function Home() {
           </div>
         </nav>
         <div className="hero-copy">
-          <p className="eyebrow">Ahmed Abo Zahra — Web Developer · React &amp; Next.js</p>
+          <p className="eyebrow">Ahmed Abo Zahra — Full-Stack Web Developer · React &amp; Next.js</p>
           <h1>Designed with care.<br />Built to work.</h1>
-          <p className="intro">I design and develop React and Next.js websites, storefronts, and dashboards — connecting clear interfaces to working application logic, with particular care for Arabic RTL.</p>
+          <p className="intro">I design and build full-stack web experiences with React, Next.js, and TypeScript — from responsive Arabic RTL interfaces to backend APIs, authenticated dashboards, and data workflows.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">View my work <span aria-hidden="true">↗</span></a>
             <a className="button button-secondary" href="#contact">Let’s talk <ContactIcon name="chat" /></a>
@@ -90,7 +90,7 @@ export default function Home() {
 
       <section className="about" id="about" aria-labelledby="about-title">
         <figure className="about-portrait"><div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div><figcaption>Ahmed Abo Zahra <span>Developer · Egypt</span></figcaption></figure>
-        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a web developer working with React, Next.js, and TypeScript and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design, implementation, and testing. I’m looking for a web development role where I can contribute and keep learning.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a full-stack web developer working with React, Next.js, and TypeScript and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design, implementation, and testing. I’m looking for a full-stack or frontend development role where I can contribute and keep learning.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">

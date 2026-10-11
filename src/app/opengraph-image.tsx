@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Ahmed Abo Zahra — Web Developer | React & Next.js";
+export const alt = "Ahmed Abo Zahra — Full-Stack Web Developer | React & Next.js";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -10,7 +10,7 @@ export default function OpenGraphImage() {
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26 }}><span>AZ</span><span>ahmedabozahra.me</span></div>
       <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
         <div style={{ fontSize: 76, letterSpacing: -3 }}>Ahmed Abo Zahra</div>
-        <div style={{ fontSize: 34 }}>Web Developer | React & Next.js</div>
+        <div style={{ fontSize: 34 }}>Full-Stack Web Developer | React & Next.js</div>
       </div>
       <div style={{ borderTop: "2px solid #796039", paddingTop: 26, fontSize: 24 }}>Designed with care. Built to work.</div>
     </div>,
