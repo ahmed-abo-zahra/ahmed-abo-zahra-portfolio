@@ -133,3 +133,18 @@ footer { padding-block:2rem; }
 .case-feature-shot figcaption { margin-top: 16px; font-size: 14px; line-height: 1.6; }
 @media (max-width: 1000px) { .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .service-grid, .case-details { grid-template-columns: 1fr; } .service-grid article { border-bottom: 1px solid #173d3533; padding-bottom: 24px; } .case-details { gap: 32px; } }
+
+/* Project evidence stays readable alongside the cinematic work sequence. */
+.project-focus { color:var(--brass-text); font-size:.76rem; font-weight:700; }
+.case-status { margin:0 5%; padding:24px 28px; background:#e4ddcd; border-left:3px solid var(--brass-text); }
+.case-status>p:last-child { font-size:.9rem; line-height:1.8; max-width:75ch; margin-bottom:0; }
+.case-workflow { padding:0 5% 72px; }
+.case-workflow h2,.case-feature-shot h2 { font-size:clamp(2rem,3vw,3rem); margin-bottom:24px; }
+.case-workflow ol { padding:0; list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.case-workflow li { border-top:1px solid #79603955; padding-top:24px; }
+.case-workflow h3 { font-family:var(--font-manrope),sans-serif; font-size:1rem; font-weight:700; margin:16px 0; }
+.case-workflow li>p { font-size:.9rem; line-height:1.8; }
+@media(max-width:760px) { .case-workflow ol { grid-template-columns:1fr; gap:24px; } .case-status { padding:20px; } }
+
+.case-feature-shot>.image-preview { position:relative; display:block; inset:auto; height:auto; aspect-ratio:1440/1050; background:var(--surface); overflow:hidden; }
+.case-feature-shot>.image-preview img { object-fit:contain; }

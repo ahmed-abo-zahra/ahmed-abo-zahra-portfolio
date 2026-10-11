@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProject, projects } from "@/content/projects";
+import { getProject, projects, featuredProjects } from "@/content/projects";
 import ContactIcon from "@/components/contact-icon";
 import { profile } from "@/content/profile";
 import ProjectImage from "@/components/project-image";
@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  const nextProject = projects.length > 1 ? projects[(projects.findIndex(item => item.slug === slug) + 1) % projects.length] : undefined;
+  const nextProject = featuredProjects[(featuredProjects.findIndex(item => item.slug === slug) + 1) % featuredProjects.length];
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -62,6 +62,7 @@ export default async function ProjectPage({ params }: Props) {
         <div>
           <p className="eyebrow">Selected work / {project.number}</p>
           <h1>{project.name}</h1>
+          {project.focus && <p className="eyebrow">{project.focus}</p>}
           <p className="case-summary">{project.summary}</p>
         </div>
         <div className="case-meta"><span>{project.type}</span><span>{project.role}</span></div>
@@ -77,10 +78,14 @@ export default async function ProjectPage({ params }: Props) {
         <div><p className="eyebrow">Outcome</p><p>{project.outcome}</p></div>
       </section>
 
+      {project.status && <aside className="case-status" aria-label="Project status"><p className="eyebrow">What is available</p><p>{project.status}</p></aside>}
+
       <section className="case-details" aria-label="Implementation details">
         <div><h2>My role</h2><p>{project.roleDetails}</p></div>
         <div><h2>Key features</h2><ul>{project.keyFeatures.map(feature => <li key={feature}>{feature}</li>)}</ul></div>
       </section>
+
+      {project.workflow && <section className="case-workflow" aria-labelledby="workflow-title"><h2 id="workflow-title">How it works</h2><ol>{project.workflow.map((step, index) => <li key={step.title}><span className="eyebrow">0{index + 1}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></section>}
 
       <section className="case-gallery" aria-label={`${project.name} desktop and mobile views`}>
         <div className="desktop-shot"><ProjectImage src={project.image} alt={`${project.name} desktop view`} sizes="(max-width: 900px) 100vw, 67vw" /></div>
@@ -89,9 +94,11 @@ export default async function ProjectPage({ params }: Props) {
 
       {project.detailImage && <figure className="case-feature-shot"><ProjectImage src={project.detailImage} alt={project.detailImageAlt ?? project.name} sizes="90vw" /><figcaption>{project.detailImageAlt}</figcaption></figure>}
 
+      {project.evidence?.map(shot => <figure className="case-feature-shot" key={shot.image}><h2>{shot.title}</h2><ProjectImage src={shot.image} alt={shot.alt} sizes="90vw" aspectRatio={shot.aspectRatio} /><figcaption>{shot.caption}</figcaption></figure>)}
+
       <section className="case-footer">
         <div><p className="eyebrow">Built with</p><ul>{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul></div>
-        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">View live site <span aria-hidden="true">↗</span></a>{project.sourceUrl && <a className="button button-secondary" href={project.sourceUrl} target="_blank" rel="noreferrer">View source code <ContactIcon name="github" /></a>}</div>
+        <div className="case-actions"><a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">{project.liveLabel ?? "View live site"} <span aria-hidden="true">↗</span></a>{project.sourceUrl && <a className="button button-secondary" href={project.sourceUrl} target="_blank" rel="noreferrer">View source code <ContactIcon name="github" /></a>}</div>
       </section>
       <nav className="case-next" aria-label="Continue exploring">{nextProject && <Link href={`/work/${nextProject.slug}`}><span className="eyebrow">Next project</span><strong>{nextProject.name} <span aria-hidden="true">↗</span></strong></Link>}<a className="button button-secondary" href={`mailto:${profile.email}`}>Discuss a project <ContactIcon name="email" /></a></nav>
     </main>

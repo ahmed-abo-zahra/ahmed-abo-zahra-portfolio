@@ -24,10 +24,10 @@ Tests cover images, project routes, responsive layouts, the cinematic hero, redu
 
 ## Content and assets
 
-- `src/content/projects.ts`: project entries, order, case studies and screenshot references. Adding an entry generates its route, sitemap URL and next-project navigation. See `docs/adding-projects.md`.
+- `src/content/projects.ts`: project entries, order, case studies and screenshot references. Adding an entry generates its route and sitemap URL. Set `featured: false` to retain a case study without showing it in the selected homepage work. Featured entries control the next-project sequence. See `docs/adding-projects.md`.
 - `src/content/profile.ts`: current public contact links and identity.
 - `public/images/projects`: real project screenshots. Optimized previews load first; the full-resolution original loads when its viewer is opened.
-- `public/Ahmed_Abo_Zahra_CV.pdf`: published CV. Editable source is in the parent workspace under `output/cv`.
+- `public/Ahmed_Abo_Zahra_CV.pdf`: published CV. Job-focused CV. Rebuild with `python3 scripts/build_jobs_cv.py` (requires reportlab and pypdf); outputs also go to the parent workspace under `output/cv`.
 - `src/app/icon.svg`: AZ mark. Run `node scripts/generate-icons.mjs` after changing it to regenerate browser and Apple icons.
 
 ## Deployment and indexing

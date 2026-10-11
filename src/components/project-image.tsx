@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-type Props = { src: string; alt: string; sizes: string; eager?: boolean };
+type Props = { src: string; alt: string; sizes: string; eager?: boolean; aspectRatio?: string };
 
-export default function ProjectImage({ src, alt, sizes, eager = false }: Props) {
+export default function ProjectImage({ src, alt, sizes, eager = false, aspectRatio }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [opened, setOpened] = useState(false);
 
@@ -15,7 +15,7 @@ export default function ProjectImage({ src, alt, sizes, eager = false }: Props) 
   }
 
   return <>
-    <button className="image-preview" onClick={open} aria-label={`View full image: ${alt}`}>
+    <button className="image-preview" style={aspectRatio ? { aspectRatio } : undefined} onClick={open} aria-label={`View full image: ${alt}`}>
       <Image src={src} alt={alt} fill sizes={sizes} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : undefined} />
       <span className="image-preview-label">View full image <span aria-hidden="true">＋</span></span>
     </button>

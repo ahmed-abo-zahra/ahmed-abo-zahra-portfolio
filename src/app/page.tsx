@@ -9,7 +9,7 @@ import CopyEmail from "@/components/copy-email";
 import LocalTime from "@/components/local-time";
 import ContactForm from "@/components/contact-form";
 import { profile } from "@/content/profile";
-import { projects } from "@/content/projects";
+import { featuredProjects as projects } from "@/content/projects";
 
 export const metadata: Metadata = {
   robots: process.env.SITE_INDEXABLE === "true" ? { index: true, follow: true } : { index: false, follow: false },
@@ -38,12 +38,12 @@ export default function Home() {
           </div>
         </nav>
         <div className="hero-copy">
-          <p className="eyebrow">Ahmed Abo Zahra — React &amp; Next.js Developer</p>
+          <p className="eyebrow">Ahmed Abo Zahra — Web Developer · React &amp; Next.js</p>
           <h1>Designed with care.<br />Built to work.</h1>
-          <p className="intro">I design and build responsive business websites and web interfaces with React, Next.js, and TypeScript — with particular care for Arabic RTL experiences.</p>
+          <p className="intro">I design and develop React and Next.js websites, storefronts, and dashboards — connecting clear interfaces to working application logic, with particular care for Arabic RTL.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">View my work <span aria-hidden="true">↗</span></a>
-            <a className="button button-secondary" href="#contact">Discuss your project <ContactIcon name="chat" /></a>
+            <a className="button button-secondary" href="#contact">Let’s talk <ContactIcon name="chat" /></a>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
@@ -55,7 +55,7 @@ export default function Home() {
         <div className="section-heading">
           <p className="eyebrow">Selected work <span className="work-count">{String(projects.length).padStart(2, "0")} projects · Built independently</span></p>
           <h2 id="work-title">Ideas made tangible.</h2>
-          <p>Independently designed and developed. Explore the ideas, decisions, and details behind each one.</p>
+          <p>Independently designed and developed. Three perspectives: commerce and dashboards, business websites, and Arabic RTL with motion. Explore the implementation and my role in each.</p>
         </div>
         <div className="exhibits">
           {projects.map((project) => (
@@ -66,9 +66,9 @@ export default function Home() {
               <div className="exhibit-plate"><Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 899px) 100vw, 62vw" /></div>
               <div className="exhibit-info">
                 <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
-                <h3>{project.name}</h3>
+                <h3>{project.name}</h3>{project.focus && <p className="project-focus">{project.focus}</p>}
                 <p>{project.summary}</p>
-                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`} target="_blank" rel="noreferrer">Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <span aria-hidden="true">↗</span></a></div></div>
+                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`} target="_blank" rel="noreferrer">Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">{project.liveLabel ?? "Visit website"} <span aria-hidden="true">↗</span></a></div></div>
               </div>
             </article>
             </Fragment>
@@ -77,12 +77,12 @@ export default function Home() {
       </section>
 
       <section className="services-section" id="services" aria-labelledby="services-title">
-        <header><p className="eyebrow">How I can help</p><h2 id="services-title">A website with a purpose.</h2><p>Focused services for businesses, products, and existing websites.</p></header>
+        <header><p className="eyebrow">What I build</p><h2 id="services-title">Interfaces with a purpose.</h2><p>Practical development skills, demonstrated in the selected projects.</p></header>
         <div className="service-grid">{[
           ["Business Websites", "Company websites that present your services clearly and make it easy for customers to get in touch."],
           ["Landing Pages", "Responsive landing pages for a product or service, with a clear message and a focused path to action."],
           ["React & Next.js Interfaces", "Web interfaces built with React and Next.js, including API integration and useful loading, empty, and error states."],
-          ["Responsive & RTL Fixes", "Fixes for mobile layouts, spacing, and Arabic right-to-left interfaces on your existing website."],
+          ["Storefronts & Dashboards", "Product browsing, carts, management interfaces, and validated application workflows — demonstrated in ASO CLO."],
         ].map(([title, description], index) => <article key={title}><span className="eyebrow">0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>
       <Capabilities />
@@ -90,12 +90,12 @@ export default function Home() {
 
       <section className="about" id="about" aria-labelledby="about-title">
         <figure className="about-portrait"><div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div><figcaption>Ahmed Abo Zahra <span>Developer · Egypt</span></figcaption></figure>
-        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a freelance React and Next.js developer and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design and the development.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a web developer working with React, Next.js, and TypeScript and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design, implementation, and testing. I’m looking for a web development role where I can contribute and keep learning.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="contact-orb" aria-hidden="true" />
-        <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Have an idea?<br />Let&apos;s make it real.</h2><p>Tell me what you need to build, what you already have, and your target launch date.</p>
+        <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Let&apos;s build<br />what comes next.</h2><p>Hiring for a web development role, or building a product? Tell me about the team, the work, and what you need.</p>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
         <CopyEmail />
         <div className="contact-actions"><a className="button button-light" href="mailto:ahmedabozahra68@gmail.com">Write an email <ContactIcon name="email" /></a><a className="button button-outline-light" href="https://wa.me/201010752614" target="_blank" rel="noreferrer">WhatsApp <ContactIcon name="whatsapp" /></a><a className="button button-outline-light" href="https://www.linkedin.com/in/ahmed-abo-zahra/" target="_blank" rel="noreferrer">LinkedIn <ContactIcon name="linkedin" /></a></div>

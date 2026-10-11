@@ -9,6 +9,12 @@ export type Project = {
   roleDetails: string;
   keyFeatures: string[];
   sourceUrl?: string;
+  featured?: boolean;
+  focus?: string;
+  liveLabel?: string;
+  status?: string;
+  workflow?: { title: string; description: string }[];
+  evidence?: { image: string; alt: string; title: string; caption: string; aspectRatio?: string }[];
   detailImage?: string;
   detailImageAlt?: string;
   liveUrl: string;
@@ -21,10 +27,37 @@ export type Project = {
   outcome: string;
 };
 
-// Add a project here. Order, routes, sitemap and the hero feature are derived from this list.
+// Add projects here. Only featured projects appear on the homepage; existing case studies keep their URLs.
 const projectEntries: Omit<Project, "number">[] = [
   {
+    slug: "aso-clo", name: "ASO CLO", type: "E-commerce · Storefront & dashboard",
+    focus: "Commerce & application logic", featured: true,
+    summary: "A bilingual shopping experience paired with a partner dashboard for products, stock, and orders. Demonstrated with sample data.",
+    role: "Solo designer & developer",
+    technologies: ["Next.js", "React", "TypeScript", "Route handlers"],
+    liveUrl: "https://aso-clo-frontend-demo.vercel.app/", liveLabel: "View storefront preview",
+    image: "/images/projects/aso-hero.png", mobileImage: "/images/projects/aso-hero-mobile.png",
+    imageAlt: "ASO CLO local Next.js demo storefront with search, filters, and sample clothing products", tone: "aso",
+    roleDetails: "I owned the design and implementation end to end: brand-led storefront, Arabic/English layouts, product browsing, cart, checkout routes, signed admin sessions, partner dashboard, data models, and testing. The screenshots show my local Next.js presentation with fictional data.",
+    keyFeatures: ["Arabic/English storefront with category, search, price filtering, and sorting", "Product size and color selection, stock limits, and a persistent cart", "Demo checkout with server-derived prices, variant validation, and stock checks", "Partner dashboard for product management, order status, outstanding balances, and reports", "Signed admin sessions and server-side product/order ownership checks", "Order tracking with masked customer information"],
+    challenge: "Connect the shopper journey to the operational side of a store: a usable catalog for customers and a clear workspace for the partners managing it.",
+    approach: "Built the storefront and management interface together, with shared product/order models, Next.js route handlers, bilingual layouts, and server-side validation. Used isolated fixtures to test the workflow without touching a real store.",
+    outcome: "A working local Next.js demo covering storefront and partner operations. Verified session protection, partner isolation, variant/stock validation, and server-calculated totals. The public link opens a separate standalone storefront preview.",
+    status: "Presentation demo. Screenshots use fictional products and orders; catalog photos are AI-generated. The full storefront/dashboard runs locally with a single-process file database. Supabase integration exists in the code but has not been verified against a live database. Online payment, Google login, and WhatsApp OTP are disabled. The public preview uses HTML/CSS/JavaScript and does not include the dashboard or server checkout.",
+    workflow: [
+      {title: "Browse & choose", description: "Search or filter the catalog, open a product, choose a valid size/color, and add an available quantity to the cart."},
+      {title: "Validate & create", description: "The demo checkout route checks product variants and combined stock, calculates prices on the server, and creates unpaid orders grouped by partner."},
+      {title: "Manage & track", description: "Partners see their own products and orders in the dashboard. A customer-facing tracking route returns order status with masked information."},
+    ],
+    evidence: [
+      {image: "/images/projects/aso-product.png", alt: "ASO CLO product page with price, sizes, color, stock, and add-to-cart controls", title: "From a product to the cart", caption: "Local Next.js demo: product details, available variants, stock, and add-to-cart controls. Products, photography, and stock are presentation fixtures."},
+      {image: "/images/projects/aso-dashboard.png", alt: "ASO CLO partner dashboard showing sample order statuses, balances, and management actions", title: "The partner workspace", caption: "Local dashboard with fictional orders: overview, order states, balances, and product management. These amounts are demo data, not business results."},
+      {image: "/images/projects/aso-products-admin.png", alt: "ASO CLO partner product management showing sample product stock and availability controls", title: "Catalog management", caption: "A partner sees their own products and manages stock and availability. Server-side ownership checks protect the product routes."},
+    ],
+  },
+  {
     slug: "easylink-telecom",
+    focus: "Business websites & content structure", featured: true,
     name: "Easylink Telecom",
     type: "Client project",
     summary: "A responsive business website that presents communication and security services with clear paths to contact.",
@@ -39,10 +72,18 @@ const projectEntries: Omit<Project, "number">[] = [
     keyFeatures: ["Company, product, service, and contact pages", "Arabic and English content with RTL-aware layouts", "Responsive navigation and layouts for desktop and mobile", "Email, telephone, WhatsApp, and quote enquiry routes", "Page titles, descriptions, and semantic content structure"],
     challenge: "Create a clear business presence that presents integrated communication and security services while keeping the path to contact direct.",
     approach: "Built the visual direction, responsive interface, service pages, Arabic and English content, and SEO page structure as one connected experience.",
+    evidence: [{image: "/images/projects/easylink-service.png", alt: "Easylink call center service page with service explanation and enquiry actions", title: "From services to enquiries", caption: "Published service page: a dedicated explanation, clear navigation, and a direct enquiry action. These are the company’s services; I built the website presenting them."}],
+    status: "Published business website at easylink-eg.com. This case study demonstrates the public site; private dashboards, authentication, and database operations are outside the evidence shown here.",
+    workflow: [
+      {title: "Discover the business", description: "The homepage introduces the company and its communication and security services."},
+      {title: "Explore a solution", description: "Dedicated service and product pages organize the offering, with Arabic and English content and responsive navigation."},
+      {title: "Start an enquiry", description: "Visitors reach the company through telephone, email, WhatsApp, or the quote enquiry routes. This is a business website, not an online checkout."},
+    ],
     outcome: "Published at easylink-eg.com, with service and product pages, responsive layouts, and direct contact routes. This case study covers the public business website.",
   },
   {
     slug: "qalb-zaker",
+    focus: "Arabic RTL & motion design", featured: true,
     name: "Qalb Zaker",
     type: "Client project · Arabic RTL Landing Page",
     summary: "An Arabic RTL landing page shaped around clarity, responsive design, and motion.",
@@ -57,10 +98,18 @@ const projectEntries: Omit<Project, "number">[] = [
     keyFeatures: ["Arabic right-to-left navigation, typography, and section layout", "Responsive layouts shown in the desktop and mobile captures below", "GSAP and ScrollTrigger animation with Lenis scrolling", "Product introduction, daily adhkar, feature, and FAQ sections", "App download and contribution links clearly marked as coming soon on the live page"],
     challenge: "Introduce an Arabic-first product through an interface that feels calm, legible, and natural in a right-to-left reading flow.",
     approach: "Designed and developed the landing page from scratch, with the hierarchy, RTL layout, responsive behavior, and motion working together.",
+    evidence: [{image: "/images/projects/qalb-features.png", alt: "Qalb Zaker landing page feature section with Arabic typography and a decorative phone preview", title: "A deliberate RTL composition", caption: "A section from the live landing page: Arabic content hierarchy, a feature card, and a phone illustration. The illustration presents the product concept; it is not evidence of a released app.", aspectRatio: "1176 / 462"}],
+    status: "Published Arabic RTL landing page. App download and contribution links are marked coming soon; a released mobile app or payment flow is not claimed here.",
+    workflow: [
+      {title: "Introduce the product", description: "A clear Arabic hero and app artwork explain the product before visitors start exploring."},
+      {title: "Build understanding", description: "Daily adhkar, feature, and FAQ sections follow a right-to-left reading flow, with scroll-driven motion supporting the content."},
+      {title: "Set expectations", description: "Responsive desktop/mobile layouts keep the page usable. Coming-soon labels make the current status of app downloads explicit."},
+    ],
     outcome: "A live Arabic landing page that communicates the product clearly across desktop and mobile screens.",
   },
   {
     slug: "bookworm",
+    featured: false,
     name: "Bookworm",
     type: "Independent course capstone",
     summary: "A browser-based digital library and reading experience built from an original idea.",
@@ -86,6 +135,8 @@ export const projects: Project[] = projectEntries.map((project, index) => ({
   ...project,
   number: String(index + 1).padStart(2, "0"),
 }));
+
+export const featuredProjects = projects.filter(project => project.featured !== false);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

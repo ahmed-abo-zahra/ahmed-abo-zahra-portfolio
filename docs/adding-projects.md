@@ -9,3 +9,7 @@ Run `npm run lint`, `npm run build`, and the verification scripts before pushing
 Contact icons live in `src/components/contact-icon.tsx`. Keep visible text labels; decorative SVGs are hidden from screen readers.
 
 Run the complete suite with `QA_URL=http://localhost:3000 npm run test:e2e` against a running production server. Install Chromium and WebKit with `npx playwright install chromium webkit` first. Metadata and screenshot-viewer checks discover project routes from the homepage, so new projects are included automatically.
+
+## Featured work and implementation evidence
+
+The homepage uses `featuredProjects`; all entries retain case routes and sitemap URLs. Set `featured: false` for supporting/archived projects. Optional `focus`, `status`, `workflow`, `evidence`, and `liveLabel` fields explain the project strength, release status, user journey, screenshot captions, and accurate link destination. ASO is a local Next.js demo; its public link is a separate frontend-only preview. Do not describe that preview as a live backend/dashboard.

@@ -7,7 +7,7 @@ const errors = [];
 for (const width of [390, 768, 1440]) {
   const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
   page.on('pageerror', error => errors.push(error.message));
-  for (const route of ['/', '/work/easylink-telecom', '/work/qalb-zaker', '/work/bookworm']) {
+  for (const route of ['/', '/work/aso-clo', '/work/easylink-telecom', '/work/qalb-zaker', '/work/bookworm']) {
     const response = await page.goto(base + route, { waitUntil: 'networkidle' });
     assert.equal(response.status(), 200, route);
     await page.evaluate(() => document.fonts.ready);
@@ -34,4 +34,4 @@ const result = await fetch(base + '/Ahmed_Abo_Zahra_CV.pdf');
 assert.equal(result.status, 200);
 assert.match(result.headers.get('content-type'), /pdf/);
 await browser.close();
-console.log('Passed: 4 routes × 3 widths, image decoding, headings, overflow, contact links, PDF, and browser errors.');
+console.log('Passed: 5 routes × 3 widths, image decoding, headings, overflow, contact links, PDF, and browser errors.');

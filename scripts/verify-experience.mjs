@@ -34,7 +34,7 @@ const page = await browser.newPage({ javaScriptEnabled: false });
 await page.goto(base);
 assert.equal(await page.locator('.craft-chapter').count(), 3);
 assert.equal(await page.locator('.process-steps li').count(), 4);
-for (const path of ['easylink-telecom', 'qalb-zaker', 'bookworm']) {
+for (const path of ['aso-clo', 'easylink-telecom', 'qalb-zaker', 'bookworm']) {
   await page.goto(`${base}/work/${path}`);
   const next = page.locator('.case-next a').first();
   assert.notEqual(await next.getAttribute('href'), `/work/${path}`);

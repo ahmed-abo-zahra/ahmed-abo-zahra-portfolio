@@ -31,7 +31,7 @@ for (const route of ['/', ...routes]) {
   if (route !== '/') {
     const graph = await page.locator('script[type="application/ld+json"]').first().textContent();
     assert.match(graph, /BreadcrumbList/);
-    const trigger = page.locator('.image-preview').first();
+    for (const trigger of await page.locator('.image-preview').all()) {
     await trigger.click();
     const dialog = page.locator('dialog[open]');
     await dialog.waitFor();
@@ -40,6 +40,7 @@ for (const route of ['/', ...routes]) {
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('dialog[open]').count(), 0);
     assert.ok(await trigger.evaluate(el => el === document.activeElement));
+    }
   }
   results.push({ route, title, status: 'passed' });
 }
