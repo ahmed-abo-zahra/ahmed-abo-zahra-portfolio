@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import type { Metadata } from "next";
 import MotionExperience from "@/components/motion-experience";
 import ContactIcon from "@/components/contact-icon";
-import Capabilities from "@/components/capabilities";
 import Process from "@/components/process";
 import CopyEmail from "@/components/copy-email";
 import LocalTime from "@/components/local-time";
@@ -22,13 +21,16 @@ export default function Home() {
       <a className="skip-link" href="#work">Skip to work</a>
       <div className="hero-journey" id="top">
       <section className="hero" aria-label="Introduction">
-        <div className="architecture build-scene" aria-hidden="true">
-          <div className="scene-grid" />
-          <div className="scene-caption">From an idea to an experience.</div>
-          <div className="build-layer layer-data"><span className="layer-label">03 / Structure</span><div className="data-lines"><i /><i /><i /></div><span className="layer-note">A clear page structure</span></div>
-          <div className="build-layer layer-logic"><span className="layer-label">02 / Function</span><div className="logic-path"><i /><span /><i /><span /><i /></div><span className="layer-note">Every action connected</span></div>
-          <div className="build-layer layer-interface"><div className="scene-browser"><span /><span /><span /></div><span className="layer-label">01 / Interface</span><strong>Made to<br />make sense.</strong><div className="scene-ui"><i /><i /></div><span className="layer-note">Thoughtful by design</span></div>
-          <div className="scene-footer">Design · Development · Delivery</div>
+        <div className="architecture build-scene" aria-label="My approach: interface, application logic, and delivery">
+          <div className="scene-grid" aria-hidden="true" />
+          <div className="scene-caption">The thinking behind the build</div>
+          <div className="build-system">
+            <div className="system-spine" aria-hidden="true"><span /></div>
+            <div className="build-layer layer-interface"><span className="system-number">01</span><div><span className="layer-label">Interface</span><strong>Clarity on every screen.</strong><p>Responsive layouts · Arabic RTL · Considered motion</p><div className="interface-lines" aria-hidden="true"><i /><i /><i /></div></div></div>
+            <div className="build-layer layer-logic"><span className="system-number">02</span><div><span className="layer-label">Application</span><strong>Purpose behind every action.</strong><p>Backend APIs · Sessions · Validated workflows</p><div className="system-flow" aria-hidden="true"><span>Input</span><i /><span>Validate</span><i /><span>Respond</span></div></div></div>
+            <div className="build-layer layer-data"><span className="system-number">03</span><div><span className="layer-label">Delivery</span><strong>Care beyond the build.</strong><p>Browser testing · SEO structure · Deployment</p><div className="delivery-rule" aria-hidden="true"><span /><span /><span /></div></div></div>
+          </div>
+          <div className="scene-footer">One connected experience.<span>Design → Develop → Deliver</span></div>
         </div>
         <nav className="nav" aria-label="Primary navigation">
           <a className="wordmark" href="#top" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</a>
@@ -43,8 +45,9 @@ export default function Home() {
           <p className="intro">I design and build full-stack web experiences with React, Next.js, and TypeScript — from responsive Arabic RTL interfaces to backend APIs, authenticated dashboards, and data workflows.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">View my work <span aria-hidden="true">↗</span></a>
-            <a className="button button-secondary" href="#contact">Let’s talk <ContactIcon name="chat" /></a>
+            <a className="button button-secondary" href="#contact">Discuss your project <ContactIcon name="chat" /></a>
           </div>
+          <a className="hero-cv" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
         </div>
         <div className="scroll-cue" aria-hidden="true"><span /></div>
         <div className="journey-progress" aria-hidden="true"><span /></div>
@@ -54,8 +57,8 @@ export default function Home() {
       <section className="work-section" id="work" aria-labelledby="work-title">
         <div className="section-heading">
           <p className="eyebrow">Selected work <span className="work-count">{String(projects.length).padStart(2, "0")} projects · Built independently</span></p>
-          <h2 id="work-title">Ideas made tangible.</h2>
-          <p>Independently designed and developed. Three perspectives: commerce and dashboards, business websites, and Arabic RTL with motion. Explore the implementation and my role in each.</p>
+          <h2 id="work-title">Three projects.<br />Three different strengths.</h2>
+          <p>From a store and its operations to a business presence and an Arabic-first experience. I designed and developed each project independently; the case studies explain what works and how it was built.</p>
         </div>
         <div className="exhibits">
           {projects.map((project) => (
@@ -77,15 +80,14 @@ export default function Home() {
       </section>
 
       <section className="services-section" id="services" aria-labelledby="services-title">
-        <header><p className="eyebrow">What I build</p><h2 id="services-title">Interfaces with a purpose.</h2><p>Practical development skills, demonstrated in the selected projects.</p></header>
+        <header><p className="eyebrow">How I can contribute</p><h2 id="services-title">From the first screen<br />to the logic behind it.</h2><p>Frontend craft and practical application development, brought together in one build.</p></header>
         <div className="service-grid">{[
-          ["Business Websites", "Company websites that present your services clearly and make it easy for customers to get in touch."],
-          ["Landing Pages", "Responsive landing pages for a product or service, with a clear message and a focused path to action."],
-          ["React & Next.js Interfaces", "Web interfaces built with React and Next.js, including API integration and useful loading, empty, and error states."],
-          ["Storefronts & Dashboards", "Product browsing, carts, management interfaces, and validated application workflows — demonstrated in ASO CLO."],
+          ["Interface & motion", "Responsive React and Next.js interfaces, Arabic RTL layouts, accessible navigation, and scroll motion that guides attention."],
+          ["Backend & workflows", "Next.js APIs, signed sessions, ownership checks, and server-side validation for product, cart, and order workflows."],
+          ["Data & integration", "API integration and product/order models, with Supabase database and storage integration documented in the ASO case study."],
+          ["Testing & delivery", "Browser and mobile checks, semantic page structure, search metadata, and Git-based deployment with Vercel."],
         ].map(([title, description], index) => <article key={title}><span className="eyebrow">0{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>
-      <Capabilities />
       <Process />
 
       <section className="about" id="about" aria-labelledby="about-title">

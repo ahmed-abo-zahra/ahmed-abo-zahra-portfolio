@@ -8,13 +8,17 @@ for (const width of [390, 768, 1440]) {
   const page = await context.newPage();
   page.on('pageerror', e => errors.push(e.message));
   await page.goto(base, { waitUntil: 'networkidle' });
-  await page.locator('.craft-heading').scrollIntoViewIfNeeded();
+  const sequence = await page.locator('main > section').evaluateAll(sections => sections.map(section => section.id || section.className));
+  assert.deepEqual(sequence, ['work', 'services', 'process-section', 'about', 'contact']);
+  assert.equal(await page.locator('[data-project-card]').count(), 3);
+  assert.equal(await page.locator('.portal-reveal, .reveal-wall, .work-index, .craft-section').count(), 0);
+  for (const project of await page.locator('[data-project-card]').all()) {
+    assert.notEqual(await project.evaluate(el => getComputedStyle(el).position), 'sticky');
+  }
+  await page.locator('#services').scrollIntoViewIfNeeded();
   await page.waitForTimeout(900);
-  await page.screenshot({ path: `../output/qa/craft-${width}.png` });
-  await page.locator('[data-layer="data"]').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(900);
-  await page.screenshot({ path: `../output/qa/craft-expanded-${width}.png` });
-  assert.equal(await page.locator('.craft-chapter').count(), 3);
+  await page.screenshot({path: `../output/qa/contribution-${width}.png`});
+  assert.equal(await page.locator('.service-grid article').count(), 4);
   await page.locator('.process-section').scrollIntoViewIfNeeded();
   await page.waitForTimeout(900);
   await page.screenshot({ path: `../output/qa/process-${width}.png` });
@@ -26,13 +30,12 @@ for (const width of [390, 768, 1440]) {
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
-  assert.equal(await page.locator('.study-phone').count(), 1);
-  assert.equal(await page.locator('.study-phone').evaluate(element => getComputedStyle(element).transform), 'none');
+  assert.equal(await page.locator('.architecture').evaluate(element => getComputedStyle(element).transform), 'none');
   await context.close();
 }
 const page = await browser.newPage({ javaScriptEnabled: false });
 await page.goto(base);
-assert.equal(await page.locator('.craft-chapter').count(), 3);
+assert.equal(await page.locator('.service-grid article').count(), 4);
 assert.equal(await page.locator('.process-steps li').count(), 4);
 for (const path of ['aso-clo', 'easylink-telecom', 'qalb-zaker', 'bookworm']) {
   await page.goto(`${base}/work/${path}`);

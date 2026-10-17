@@ -30,9 +30,9 @@ export function startDesktopMotion() {
           trigger: journey, start: "top top", end: "bottom top", scrub: 0.65,
           invalidateOnRefresh: true,
         }});
-        timeline.to(".layer-interface", { y: -75, rotateZ: -3, duration: 1, ease: "none" }, 0)
-          .to(".layer-logic", { y: -20, x: 20, duration: 1, ease: "none" }, 0)
-          .to(".layer-data", { y: 45, x: 35, duration: 1, ease: "none" }, 0)
+        timeline.to(".layer-interface", { y: -18, duration: 1, ease: "none" }, 0)
+          .to(".layer-logic", { y: -10, duration: 1, ease: "none" }, 0)
+          .to(".layer-data", { y: -4, duration: 1, ease: "none" }, 0)
           .to(".journey-progress span", { scaleX: 1, duration: 1, ease: "none" }, 0);
       } else {
         gsap.to(".architecture", { y: 24, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
@@ -41,7 +41,7 @@ export function startDesktopMotion() {
         const plate = card.querySelector(".exhibit-plate");
         const info = card.querySelector(".exhibit-info");
         if (desktop && plate && info) {
-          // Each exhibit settles into place as it takes the frame, then eases back as the next covers it.
+          // Each project enters in normal document flow, without covering or repeating its predecessor.
           gsap.fromTo(plate, { scale: 1.08, yPercent: 4 }, {
             scale: 1, yPercent: 0, ease: "power2.out",
             scrollTrigger: { trigger: card, start: "top 90%", end: "top 12%", scrub: 0.6 },
@@ -59,8 +59,7 @@ export function startDesktopMotion() {
           scrollTrigger: { trigger: card, start: "top 82%", once: true },
         });
       });
-      gsap.from(".study-phone", { y: 48, rotate: 5, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".responsive-study", start: "top 80%", once: true } });
-      gsap.utils.toArray<HTMLElement>(".craft-chapter, .about-portrait, .about-facts, .contact-intro").forEach((section) => {
+      gsap.utils.toArray<HTMLElement>(".service-grid article, .about-portrait, .about-facts, .contact-intro").forEach((section) => {
         gsap.from(section, { y: 28, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 88%", once: true } });
       });
       gsap.from(".process-track span", { scaleX: 0, ease: "none", scrollTrigger: { trigger: ".process-section", start: "top 70%", end: "bottom 75%", scrub: true } });
