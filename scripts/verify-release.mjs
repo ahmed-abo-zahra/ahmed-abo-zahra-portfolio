@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = process.env.QA_URL || 'http://localhost:3009';
 const canonicalBase = 'https://ahmedabozahra.me';
-const browser = await chromium.launch({ executablePath: process.env.CHROME_BIN || undefined });
+const browser = await chromium.launch();
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
 const page = await context.newPage();
 const errors = [];
@@ -67,7 +67,7 @@ assert.match(landed.href, /^(#|\/work\/)/);
 assert.deepEqual(errors, []);
 await browser.close();
 
-// Safari engine: layout, native scrolling and image viewer.
+// Safari engine: layout, scroll enhancement and image viewer.
 const safari = await webkit.launch();
 for (const width of [320, 390, 1440]) {
   const tab = await safari.newPage({ viewport: { width, height: 900 } });

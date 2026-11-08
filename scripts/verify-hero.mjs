@@ -1,34 +1,40 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
-
-const browser = await chromium.launch({ executablePath: process.env.CHROME_BIN || undefined });
+const browser = await chromium.launch();
 const base = process.env.QA_URL || 'http://localhost:3000';
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
-try {
-  for (const width of [1440, 390]) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
-    page.on('pageerror', error => errors.push(error.message));
-    await page.goto(base, { waitUntil: 'networkidle' });
-    await page.evaluate(() => document.fonts.ready);
-    assert.equal(await page.locator('h1').count(), 1);
-    assert.equal(await page.locator('.hero-portrait img').count(), 1);
-    assert.equal(await page.locator('.exhibit').count(), 3);
-    assert.equal(await page.locator('.scroll-cue, .journey-progress, .build-scene, .process-track, .contact-orb').count(), 0);
-    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-    assert.doesNotMatch(await page.locator('body').innerText(), /[↗↓←→]/);
-    await page.locator('.hero-actions a[href="#work"]').evaluate(el => el.click());
-    await page.waitForFunction(() => location.hash === '#work');
-    assert.ok(await page.locator('#work').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 5));
-    await page.close();
-  }
-  const nojs = await browser.newPage({ javaScriptEnabled: false });
-  await nojs.goto(base, { waitUntil: 'networkidle' });
-  assert.equal(await nojs.locator('h1').count(), 1);
-  assert.equal(await nojs.locator('[data-project-card]').count(), 3);
-  assert.equal(await nojs.locator('.hero-portrait img').count(), 1);
-  assert.deepEqual(errors, []);
-  await nojs.close();
-} finally {
-  await browser.close();
-}
-console.log('Passed: clean hero, visible portrait, work anchor, responsive width, and server-rendered content.');
+page.on('pageerror', error => errors.push(error.message));
+await page.goto(base, { waitUntil: 'networkidle' });
+await page.evaluate(() => document.fonts.ready);
+await page.locator('.build-scene').waitFor();
+assert.equal(await page.locator('.portal-reveal, .work-index').count(), 0);
+assert.equal(await page.locator('.exhibit').count(), 3);
+await page.screenshot({ path: '../output/qa/hero-v2-desktop.png' });
+await page.mouse.wheel(0, 560);
+await page.waitForTimeout(1800);
+await page.screenshot({ path: '../output/qa/hero-v2-transition.png' });
+await page.mouse.wheel(0, 550);
+await page.waitForTimeout(1800);
+await page.screenshot({ path: '../output/qa/hero-v2-reveal.png' });
+assert.ok(await page.locator('.layer-interface').evaluate(el => el.style.transform.length > 0));
+await page.emulateMedia({ reducedMotion: 'reduce' });
+await page.waitForTimeout(150);
+assert.equal(await page.locator('.is-cinematic').count(), 0);
+assert.equal(await page.locator('.architecture').evaluate(el => getComputedStyle(el).transform), 'none');
+await page.evaluate(() => scrollTo(0, 0));
+await page.locator('.hero-actions a[href="#work"]').click();
+assert.ok(await page.locator('#work').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 5));
+await page.setViewportSize({ width: 390, height: 844 });
+await page.evaluate(() => scrollTo(0, 0));
+await page.screenshot({ path: '../output/qa/hero-v2-mobile.png', fullPage: true });
+assert.equal(await page.locator('.contact-actions svg').count(), 3);
+await page.close();
+const nojs = await browser.newPage({ javaScriptEnabled: false });
+await nojs.goto(base);
+assert.equal(await nojs.locator('h1').count(), 1);
+assert.ok(await nojs.locator('[data-project-card]').count() >= 3);
+assert.equal(await nojs.locator('.hero-journey').evaluate(el => getComputedStyle(el).height), await nojs.locator('.hero').evaluate(el => getComputedStyle(el).height));
+assert.deepEqual(errors, []);
+await browser.close();
+console.log('Passed: scroll reveal, live reduced-motion change, work anchor, contact icons, and no-JavaScript content.');

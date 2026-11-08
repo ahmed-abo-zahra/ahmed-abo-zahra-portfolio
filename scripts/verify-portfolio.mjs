@@ -1,12 +1,9 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
-import { mkdir } from 'node:fs/promises';
 
 const base = process.env.QA_URL || 'http://localhost:3000';
-const browser = await chromium.launch({ executablePath: process.env.CHROME_BIN || undefined });
+const browser = await chromium.launch();
 const errors = [];
-const outputDir = process.env.QA_OUTPUT_DIR || '../output/qa';
-await mkdir(outputDir, { recursive: true });
 for (const width of [390, 768, 1440]) {
   const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
   page.on('pageerror', error => errors.push(error.message));
@@ -25,7 +22,7 @@ for (const width of [390, 768, 1440]) {
     }
     if (route === '/') {
       await page.evaluate(() => scrollTo(0, 0));
-      await page.screenshot({ path: `${outputDir}/final-home-${width}.png` });
+      await page.screenshot({ path: `../output/qa/final-home-${width}.png` });
       assert.ok(await page.locator('a[href="mailto:ahmedabozahra68@gmail.com"]').count());
       assert.ok(await page.locator('a[href="https://wa.me/201010752614"]').count());
     }

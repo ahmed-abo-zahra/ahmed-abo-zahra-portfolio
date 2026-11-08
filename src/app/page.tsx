@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import type { Metadata } from "next";
+import MotionExperience from "@/components/motion-experience";
 import ContactIcon from "@/components/contact-icon";
 import Process from "@/components/process";
 import CopyEmail from "@/components/copy-email";
+import LocalTime from "@/components/local-time";
 import ContactForm from "@/components/contact-form";
 import { profile } from "@/content/profile";
 import { featuredProjects as projects } from "@/content/projects";
@@ -15,31 +17,42 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
+      <MotionExperience />
       <a className="skip-link" href="#work">Skip to work</a>
-      <section className="hero" id="top" aria-label="Introduction">
+      <div className="hero-journey" id="top">
+      <section className="hero" aria-label="Introduction">
+        <div className="architecture build-scene" aria-label="My approach: interface, application logic, and delivery">
+
+          <div className="scene-caption">The thinking behind the build</div>
+          <div className="build-system">
+
+            <div className="build-layer layer-interface"><span className="system-number">01</span><div><span className="layer-label">Interface</span><strong>Clarity on every screen.</strong><p>Responsive layouts · Arabic RTL · Considered motion</p></div></div>
+            <div className="build-layer layer-logic"><span className="system-number">02</span><div><span className="layer-label">Application</span><strong>Purpose behind every action.</strong><p>Backend APIs · Sessions · Validated workflows</p><div className="system-flow" aria-hidden="true"><span>Input</span><span>Validate</span><span>Respond</span></div></div></div>
+            <div className="build-layer layer-data"><span className="system-number">03</span><div><span className="layer-label">Delivery</span><strong>Care beyond the build.</strong><p>Browser testing · SEO structure · Deployment</p></div></div>
+          </div>
+          <div className="scene-footer">One connected experience.<span>Design → Develop → Deliver</span></div>
+        </div>
         <nav className="nav" aria-label="Primary navigation">
           <a className="wordmark" href="#top" aria-label="Ahmed Abo Zahra, home"><span>Ahmed</span> Abo Zahra</a>
+          <LocalTime />
           <div className="nav-links">
             <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
           </div>
         </nav>
         <div className="hero-copy">
-          <p className="eyebrow">Full-stack web developer · React &amp; Next.js</p>
+          <p className="eyebrow">Ahmed Abo Zahra — Full-Stack Web Developer · React &amp; Next.js</p>
           <h1>Designed with care.<br />Built to work.</h1>
           <p className="intro">I design and build full-stack web experiences with React, Next.js, and TypeScript — from responsive Arabic RTL interfaces to backend APIs, authenticated dashboards, and data workflows.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#work">View my work</a>
-            <a className="button button-secondary" href="#contact">Discuss your project</a>
+            <a className="button button-primary" href="#work">View my work <span aria-hidden="true">↗</span></a>
+            <a className="button button-secondary" href="#contact">Discuss your project <ContactIcon name="chat" /></a>
           </div>
-          <a className="hero-cv" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV</a>
+          <a className="hero-cv" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
         </div>
-        <figure className="hero-portrait">
-          <div className="hero-portrait-image">
-            <Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 899px) 100vw, 31vw" priority />
-          </div>
-          <figcaption><span>Ahmed Abo Zahra</span><span>Developer · Egypt</span></figcaption>
-        </figure>
+        <div className="scroll-cue" aria-hidden="true"><span /></div>
+        <div className="journey-progress" aria-hidden="true"><span /></div>
       </section>
+      </div>
 
       <section className="work-section" id="work" aria-labelledby="work-title">
         <div className="section-heading">
@@ -58,7 +71,7 @@ export default function Home() {
                 <p className="eyebrow"><span className="exhibit-number">{project.number}</span> {project.type}</p>
                 <h3>{project.name}</h3>{project.focus && <p className="project-focus">{project.focus}</p>}
                 <p>{project.summary}</p>
-                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`} target="_blank" rel="noreferrer">Read case study</a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">{project.liveLabel ?? "Visit website"}</a></div></div>
+                <div className="project-bottom"><ul aria-label={`${project.name} technologies`}>{project.technologies.map((tag) => <li key={tag}>{tag}</li>)}</ul><div className="project-routes"><a href={`/work/${project.slug}`} target="_blank" rel="noreferrer">Read case study <span aria-hidden="true">↗</span></a><a className="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">{project.liveLabel ?? "Visit website"} <span aria-hidden="true">↗</span></a></div></div>
               </div>
             </article>
             </Fragment>
@@ -69,7 +82,7 @@ export default function Home() {
       <section className="services-section" id="services" aria-labelledby="services-title">
         <header><p className="eyebrow">How I can contribute</p><h2 id="services-title">From the first screen<br />to the logic behind it.</h2><p>Frontend craft and practical application development, brought together in one build.</p></header>
         <div className="service-grid">{[
-          ["Interface & motion", "Responsive React and Next.js interfaces, Arabic RTL layouts, accessible navigation, and motion used only when it helps the content."],
+          ["Interface & motion", "Responsive React and Next.js interfaces, Arabic RTL layouts, accessible navigation, and scroll motion that guides attention."],
           ["Backend & workflows", "Next.js APIs, signed sessions, ownership checks, and server-side validation for product, cart, and order workflows."],
           ["Data & integration", "API integration and product/order models, with Supabase database and storage integration documented in the ASO case study."],
           ["Testing & delivery", "Browser and mobile checks, semantic page structure, search metadata, and Git-based deployment with Vercel."],
@@ -78,10 +91,12 @@ export default function Home() {
       <Process />
 
       <section className="about" id="about" aria-labelledby="about-title">
-        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a full-stack web developer working with React, Next.js, and TypeScript and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design, implementation, and testing. I’m looking for a full-stack or frontend development role where I can contribute and keep learning.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV</a></div>
+        <figure className="about-portrait"><div className="portrait-wrap"><Image src="/images/portrait/ahmed-abo-zahra.jpg" alt="Ahmed Abo Zahra" fill sizes="(max-width: 760px) 100vw, 34vw" /></div><figcaption>Ahmed Abo Zahra <span>Developer · Egypt</span></figcaption></figure>
+        <div><p className="eyebrow">The person behind the work</p><h2 id="about-title">Curious by nature.<br />Careful by design.</h2><p>I&apos;m Ahmed, a full-stack web developer working with React, Next.js, and TypeScript and Computer Science &amp; Engineering student at New Mansoura University. I turn ideas into usable websites, taking ownership of the design, implementation, and testing. I’m looking for a full-stack or frontend development role where I can contribute and keep learning.</p><p>I care about the experience before the click, and the details that make it work afterwards.</p><dl className="about-facts"><div><dt>Education</dt><dd>Computer Science &amp; Engineering<br />Expected graduation · 2028</dd></div><div><dt>Experience</dt><dd>Freelance · 2025–present<br />Creativa full-stack training · 2024</dd></div><div><dt>Languages</dt><dd>Arabic · Native<br />English · Working proficiency</dd></div></dl><a className="text-link" href="/Ahmed_Abo_Zahra_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a></div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
+        <div className="contact-orb" aria-hidden="true" />
         <div className="contact-intro"><p className="eyebrow">The next conversation</p><h2 id="contact-title">Let&apos;s build<br />what comes next.</h2><p>Hiring for a web development role, or building a product? Tell me about the team, the work, and what you need.</p>
         <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
         <CopyEmail />
