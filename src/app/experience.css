@@ -42,8 +42,7 @@
 .process-heading { display:flex; align-items:flex-end; gap:4rem; justify-content:space-between; }
 .process-heading h2 { font-size:clamp(3.2rem,5.8vw,6rem); }
 .process-heading>p { max-width:20rem; color:var(--muted); line-height:1.8; }
-.process-track { height:1px; background:#79603944; margin-top:4rem; }
-.process-track span { display:block; height:100%; background:var(--brass-text); transform-origin:left; }
+
 .process-steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2rem; list-style:none; padding:0; margin:2rem 0 0; }
 .process-number { color:var(--brass-text); font-size:.75rem; }
 .process-steps h3 { font-size:2.7rem; letter-spacing:-.045em; margin:1rem 0; }
@@ -51,7 +50,7 @@
 .process-output { display:block; font-size:.75rem; margin-top:1.5rem; color:var(--brass-text); }
 .about { grid-template-columns:.85fr 1.15fr; padding:8rem clamp(1.25rem,7vw,8rem); gap:clamp(3rem,8vw,8rem); }
 .about h2 { font-size:clamp(3.4rem,5.5vw,6rem); }
-.portrait-wrap { aspect-ratio:3/4; max-width:30rem; }
+
 .about-facts { display:grid; gap:1.1rem; border-top:1px solid #79603966; margin:2rem 0 0; padding-top:1.5rem; }
 .about-facts>div { display:grid; grid-template-columns:6rem 1fr; gap:1rem; }
 .about-facts dt { font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--brass-text); }
@@ -82,19 +81,17 @@
   .process-heading>p { max-width:32rem; }
   .process-steps { grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
   .about { grid-template-columns:1fr; padding-top:5rem; padding-bottom:5rem; }
-  .portrait-wrap { max-width:25rem; }
   .case-next { align-items:flex-start; flex-direction:column; }
 }
 @media (max-width:480px) {
   .system-plane { padding:.9rem; }
   .process-steps { grid-template-columns:1fr; gap:2rem; }
-  .process-steps li { border-left:1px solid var(--brass-text); padding-left:1.25rem; }
+
   .process-steps h3 { margin:.5rem 0; }
-  .process-track { display:none; }
   .logic-flow { font-size:.5rem; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .system-plane, .craft-orbit, .process-steps li, .portrait-wrap { animation:none!important; }
+  .system-plane, .craft-orbit, .process-steps li { animation:none!important; }
 }
 .image-preview { position:absolute; inset:0; width:100%; height:100%; border:0; padding:0; color:var(--surface); background:transparent; cursor:zoom-in; }
 .image-preview-label { position:absolute; right:1rem; bottom:1rem; display:flex; align-items:center; gap:.7rem; padding:.65rem 1rem; font:500 .75rem var(--font-manrope),sans-serif; background:var(--forest); border:1px solid var(--brass-light); }
